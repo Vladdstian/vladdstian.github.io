@@ -96,9 +96,90 @@
       "id": "mlvaefaoi65c",
       "name": "Paris",
       "slug": "paris",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvafkp3ac5r.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mlvafkp3ac5r",
+          "path": "photos/paris/mlvafkp3ac5r.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvafkp3ac5r.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvafpm6bfo5",
+          "path": "photos/paris/mlvafpm6bfo5.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvafpm6bfo5.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvafu9iphk0",
+          "path": "photos/paris/mlvafu9iphk0.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvafu9iphk0.jpg",
+          "caption": "",
+          "w": 1335,
+          "h": 2048
+        },
+        {
+          "id": "mlvafzwsyyt3",
+          "path": "photos/paris/mlvafzwsyyt3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvafzwsyyt3.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvag4xnilr3",
+          "path": "photos/paris/mlvag4xnilr3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvag4xnilr3.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvagd9j3x90",
+          "path": "photos/paris/mlvagd9j3x90.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvagd9j3x90.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvagimc61jk",
+          "path": "photos/paris/mlvagimc61jk.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvagimc61jk.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvaglo3sjmn",
+          "path": "photos/paris/mlvaglo3sjmn.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvaglo3sjmn.jpg",
+          "caption": "",
+          "w": 1402,
+          "h": 2048
+        },
+        {
+          "id": "mlvagnpgnskw",
+          "path": "photos/paris/mlvagnpgnskw.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvagnpgnskw.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mlvagqxilrtf",
+          "path": "photos/paris/mlvagqxilrtf.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/paris/mlvagqxilrtf.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
