@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+<script>if(location.protocol==='http:'&&!location.hostname.includes('localhost')&&!location.hostname.includes('127.0.0.1'))location.replace('https:'+location.href.slice(5));</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -1173,12 +1174,15 @@ function applyFocus(stage, idx, animate = true) {
     stage.style.transform = `translateX(${offset}px)`;
   }
 
-  items.forEach((item, i) => {
-    const dist = Math.abs(i - idx);
-    item.classList.toggle('car-active', dist === 0);
-    item.classList.toggle('car-near',   dist === 1);
-    item.style.pointerEvents = dist === 0 ? 'auto' : 'none';
-  });
+  // Only apply active/near classes for real in-range indices
+  if (idx >= 0 && idx < n) {
+    items.forEach((item, i) => {
+      const dist = Math.abs(i - idx);
+      item.classList.toggle('car-active', dist === 0);
+      item.classList.toggle('car-near',   dist === 1);
+      item.style.pointerEvents = dist === 0 ? 'auto' : 'none';
+    });
+  }
 
   [...dotsEl.querySelectorAll('.car-dot')]
     .forEach((d, i) => d.classList.toggle('on', i === idx));
@@ -1188,9 +1192,22 @@ function applyFocus(stage, idx, animate = true) {
 
 function goToIdx(stage, idx) {
   const info = carouselMap.get(stage); if (!info) return;
-  // wrap infinitely
+  const prev = info.idx;
   idx = ((idx % info.n) + info.n) % info.n;
-  applyFocus(stage, idx);
+
+  // If wrapping (jump distance > half the strip), teleport silently to a
+  // "virtual" position just one step away, then animate the final step.
+  // This prevents the strip from sliding across all items visibly.
+  const dist = Math.abs(idx - prev);
+  if (dist > info.n / 2) {
+    // going backward past 0 → land just after last item, then step back
+    // going forward past last → land just before first item, then step forward
+    const virtualIdx = idx < prev ? info.n : -1;
+    applyFocus(stage, virtualIdx, false);   // instant jump off-screen
+    requestAnimationFrame(() => applyFocus(stage, idx, true)); // animate one step
+  } else {
+    applyFocus(stage, idx);
+  }
 }
 
 function carPrev(cid) {
