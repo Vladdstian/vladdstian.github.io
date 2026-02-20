@@ -197,30 +197,30 @@ body.admin-on .col-del-btn{display:inline-flex}
   overflow-y:visible; /* lets the scaled active photo overflow without clipping */
 }
 .carousel-stage{
-  display:flex;align-items:center;
-  transition:transform .5s cubic-bezier(.4,0,.2,1);
-  will-change:transform;
-  padding:24px 0;
+  position:relative;
+  width:100%;
+  height:260px;  /* room for active item (200px * 1.6) vertically centered */
 }
 
-/* ALL items — same base dimensions, scale transforms handle the difference */
+/* ALL items — absolute positioned, moved individually via translateX
+rms handle the difference */
 .car-item{
-  flex:0 0 210px;height:200px;margin:0 12px;
-  position:relative;cursor:pointer;
+  position:absolute;
+  top:50%;
+  width:210px;height:200px;
+  margin-top:-100px;
+  cursor:pointer;
   border-radius:4px;overflow:hidden;background:var(--s1);
   transition:
-    transform .5s cubic-bezier(.4,0,.2,1),
-    filter .5s ease,
-    opacity .5s ease,
-    box-shadow .5s ease;
+    transform .45s cubic-bezier(.4,0,.2,1),
+    filter .45s ease,
+    opacity .45s ease,
+    box-shadow .45s ease;
   filter:brightness(.35) saturate(.5);
   opacity:.55;
-  transform:scale(1);
   will-change:transform,filter,opacity;
 }
-/* active item — larger scale, full brightness, shadow */
 .car-item.car-active{
-  transform:scale(1.65);
   filter:brightness(1) saturate(1);
   opacity:1;
   box-shadow:
@@ -229,11 +229,9 @@ body.admin-on .col-del-btn{display:inline-flex}
     0 0 0 1px rgba(255,255,255,.06);
   z-index:3;
 }
-/* nearest neighbours — slightly revealed */
 .car-item.car-near{
   filter:brightness(.62) saturate(.72);
   opacity:.75;
-  transform:scale(1);
   z-index:2;
 }
 .car-item img{
@@ -1099,14 +1097,16 @@ function setCover(col,url,stage){
 /* FOCUSED CAROUSEL — infinite translateX, no scroll-snap */
 // stage element → {idx, n, items, dotsEl}
 const carouselMap = new Map();
-const CAR_W = 210, CAR_GAP = 24; // item width + gap (margin 12 each side)
 
+/*
+ * CAROUSEL — each item is position:absolute and translates independently.
+ * Shortest circular path means every transition (including wrap) = 1 step.
+ */
 function initFocusedCarousel(stage, dotsEl, col) {
   const items = [...stage.querySelectorAll('.car-item')];
   const n = items.length;
   if (!n) return;
 
-  // dots
   dotsEl.innerHTML = '';
   for (let i = 0; i < n; i++) {
     const d = document.createElement('div');
@@ -1118,7 +1118,6 @@ function initFocusedCarousel(stage, dotsEl, col) {
   carouselMap.set(stage, {idx: 0, n, items, dotsEl});
   applyFocus(stage, 0, false);
 
-  // touch/mouse swipe + trackpad wheel
   const wrap = stage.parentElement;
   let startX = null, startT = null;
   const onDown = e => { startX = (e.touches ? e.touches[0] : e).clientX; startT = Date.now(); };
@@ -1136,11 +1135,10 @@ function initFocusedCarousel(stage, dotsEl, col) {
   wrap.addEventListener('mousedown',  onDown);
   wrap.addEventListener('mouseup',    onUp);
 
-  // trackpad / mouse wheel — debounced so one flick = one step
   let wheelTimer = null;
   wrap.addEventListener('wheel', e => {
     e.preventDefault();
-    if (wheelTimer) return;           // ignore rapid repeats
+    if (wheelTimer) return;
     const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
     const info = carouselMap.get(stage);
     if (info) goToIdx(stage, info.idx + (delta > 0 ? 1 : -1));
@@ -1148,58 +1146,54 @@ function initFocusedCarousel(stage, dotsEl, col) {
   }, {passive: false});
 }
 
-function applyFocus(stage, idx, animate = true) {
+function applyFocus(stage, newIdx, animate = true) {
   const info = carouselMap.get(stage);
   if (!info) return;
   const {items, n, dotsEl} = info;
 
-  const wrapW = stage.parentElement.getBoundingClientRect().width || stage.parentElement.offsetWidth;
-  if (!wrapW) { setTimeout(() => applyFocus(stage, idx, animate), 60); return; }
+  const wrap = stage.parentElement;
+  const wrapW = wrap.getBoundingClientRect().width || wrap.offsetWidth;
+  if (!wrapW) { setTimeout(() => applyFocus(stage, newIdx, animate), 60); return; }
 
-  // Measure actual item dimensions at runtime so mobile CSS overrides are respected
-  const item0 = items[0];
-  const itemRect = item0.getBoundingClientRect();
-  const itemW = itemRect.width || item0.offsetWidth || CAR_W;
-  const style  = getComputedStyle(item0);
-  const gap    = parseFloat(style.marginLeft) + parseFloat(style.marginRight) || CAR_GAP;
-  const step   = itemW + gap;
-
-  const offset = wrapW / 2 - itemW / 2 - idx * step;
-
-  if (!animate) {
-    stage.style.transition = 'none';
-    stage.style.transform  = `translateX(${offset}px)`;
-    stage.offsetHeight; // force reflow so transition restore works
-    stage.style.transition = '';
-  } else {
-    stage.style.transform = `translateX(${offset}px)`;
-  }
+  const itemW = items[0].offsetWidth || 210;
+  const gap   = 24;
+  const step  = itemW + gap;
+  const centerX = wrapW / 2 - itemW / 2;
 
   items.forEach((item, i) => {
-    const dist = Math.abs(i - idx);
-    item.classList.toggle('car-active', dist === 0);
-    item.classList.toggle('car-near',   dist === 1);
-    item.style.pointerEvents = dist === 0 ? 'auto' : 'none';
+    // shortest circular distance: always -n/2 to +n/2
+    let d = i - newIdx;
+    if (d >  n / 2) d -= n;
+    if (d < -n / 2) d += n;
+
+    const x     = centerX + d * step;
+    const scale = (d === 0) ? 1.6 : 1;
+
+    if (!animate) {
+      item.style.transition = 'none';
+      item.style.transform  = `translateX(${x}px) scale(${scale})`;
+      item.offsetHeight;
+      item.style.transition = '';
+    } else {
+      item.style.transform = `translateX(${x}px) scale(${scale})`;
+    }
+
+    item.classList.toggle('car-active', d === 0);
+    item.classList.toggle('car-near',   Math.abs(d) === 1);
+    item.style.pointerEvents = (d === 0) ? 'auto' : 'none';
   });
 
-  [...dotsEl.querySelectorAll('.car-dot')]
-    .forEach((d, i) => d.classList.toggle('on', i === idx));
-
-  info.idx = idx;
+  info.idx = newIdx;
+  if (dotsEl) {
+    [...dotsEl.querySelectorAll('.car-dot')].forEach((dot, i) => dot.classList.toggle('on', i === newIdx));
+  }
 }
 
 function goToIdx(stage, idx) {
   const info = carouselMap.get(stage); if (!info) return;
-  const prev = info.idx;
   idx = ((idx % info.n) + info.n) % info.n;
-
-  // If wrapping (e.g. last→first or first→last), jump instantly — no slide.
-  // Animating a wrap would visually drag the entire strip across the screen.
-  const dist = Math.abs(idx - prev);
-  const isWrap = dist > info.n / 2;
-  applyFocus(stage, idx, !isWrap);
+  applyFocus(stage, idx, true);
 }
-
 function carPrev(cid) {
   const s = G(`car-${cid}`); if (s) { const i = carouselMap.get(s); if (i) goToIdx(s, i.idx - 1); }
 }
