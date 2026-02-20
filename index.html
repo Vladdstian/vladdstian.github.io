@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 /* ── DESIGN TOKENS ── */
 :root{
@@ -23,7 +23,7 @@
   --r:4px;
   --bar:68px;
   --panel:420px;
-  --serif:'Playfair Display',Georgia,serif;
+  --serif:'Instrument Serif',Georgia,serif;
   --sans:'Inter',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -70,7 +70,7 @@ body:has(.car-item.car-active:hover) #cursor{
   border-bottom-color:var(--border);
 }
 #hdr-title{
-  font-family:var(--serif);font-size:20px;font-style:italic;font-weight:400;
+  font-family:var(--serif);font-size:20px;font-weight:400;
   letter-spacing:.04em;color:var(--t1);cursor:pointer;user-select:none;text-decoration:none;
   transition:color .2s;
 }
@@ -109,7 +109,7 @@ body.admin-on #btn-login{display:none}
 @keyframes fi{from{opacity:0}}
 #tok-box{background:var(--s2);border:1px solid var(--border2);border-radius:12px;padding:44px;width:380px;max-width:100%;box-shadow:0 40px 100px rgba(0,0,0,.8);animation:su .22s cubic-bezier(.22,.68,0,1.15)}
 @keyframes su{from{opacity:0;transform:translateY(16px)}}
-.tok-title{font-family:var(--serif);font-size:28px;font-style:italic;font-weight:400;margin-bottom:6px}
+.tok-title{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:6px}
 .tok-sub{font-size:12px;color:var(--t3);line-height:1.7;margin-bottom:24px}
 .tok-field label{display:block;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
 .tok-field input{width:100%;padding:12px 16px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);color:var(--t1);font-size:13px;outline:none;transition:border-color .15s}
@@ -146,8 +146,8 @@ body.admin-on #btn-login{display:none}
 .reveal.in{opacity:1;transform:none}
 
 /* ── COLLECTION SECTIONS ── */
-.col-section{padding:96px 0 0}
-.col-section:last-child{padding-bottom:100px}
+.col-section{padding:48px 0 0}
+.col-section:last-child{padding-bottom:72px}
 
 .col-header{
   display:flex;flex-direction:column;align-items:center;
@@ -160,7 +160,7 @@ body.admin-on #btn-login{display:none}
 .col-name{
   font-family:var(--serif);
   font-size:clamp(32px,4.5vw,64px);
-  font-weight:400;font-style:italic;
+  font-weight:400;
   letter-spacing:.01em;color:var(--t1);
   cursor:pointer;position:relative;display:inline-block;
   transition:color .25s;line-height:1.1;
@@ -284,16 +284,16 @@ body.admin-on .car-del{display:flex}
 .car-empty{height:200px;width:100%;display:flex;align-items:center;justify-content:center;font-size:12px;font-style:italic;color:var(--t3);border:1px dashed var(--border);border-radius:4px}
 
 .col-divider{
-  border:none;margin:96px 0 0;
+  border:none;margin:64px 0 0;
   height:1px;
   background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent);
 }
 .home-empty{text-align:center;padding:140px 20px}
-.home-empty-title{font-family:var(--serif);font-size:48px;font-style:italic;font-weight:400;color:var(--t2);margin-bottom:12px}
+.home-empty-title{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--t2);margin-bottom:12px}
 .home-empty p{font-size:13px;color:var(--t3);line-height:1.8}
 
 /* ── DETAIL VIEW ── */
-#detail-view{display:none;position:fixed;inset:0;z-index:150;background:var(--bg);overflow-y:auto;padding-top:var(--bar);animation:dvIn .3s cubic-bezier(.4,0,.2,1)}
+#detail-view{display:none;position:fixed;inset:0;z-index:250;background:var(--bg);overflow-y:auto;animation:dvIn .3s cubic-bezier(.4,0,.2,1)}
 @keyframes dvIn{from{opacity:0;transform:translateY(20px)}}
 #detail-view.open{display:block}
 .dv-bar{
@@ -306,7 +306,7 @@ body.admin-on .car-del{display:flex}
 #dv-back:hover{border-color:var(--t1);color:var(--t1)}
 #dv-back svg{width:11px;height:11px}
 .dv-rule{width:1px;height:20px;background:var(--border);flex-shrink:0}
-#dv-title{font-family:var(--serif);font-size:22px;font-style:italic;font-weight:400}
+#dv-title{font-family:var(--serif);font-size:22px;font-weight:400}
 #dv-count{margin-left:auto;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
 #dv-share{display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border2);padding:7px 16px;border-radius:100px;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);cursor:pointer;transition:all .18s;margin-left:8px}
 #dv-share:hover{border-color:var(--acc);color:var(--acc)}
@@ -361,7 +361,7 @@ body.admin-on .caption-edit{display:block}
 .feed-item.dragging{opacity:.3;outline:1px dashed var(--acc);outline-offset:4px}
 .feed-item.drag-over-top{border-top:2px solid var(--acc);padding-top:2px}
 .feed-item.drag-over-bot{border-bottom:2px solid var(--acc);padding-bottom:2px}
-.dv-empty{text-align:center;padding:80px;font-family:var(--serif);font-size:28px;font-style:italic;font-weight:400;color:var(--t3)}
+.dv-empty{text-align:center;padding:80px;font-family:var(--serif);font-size:28px;font-weight:400;color:var(--t3)}
 
 /* ── LIGHTBOX ── */
 #lb{position:fixed;inset:0;z-index:800;background:rgba(6,6,6,.97);display:none;align-items:center;justify-content:center}
@@ -406,7 +406,7 @@ body.admin-on .caption-edit{display:block}
   margin-top:0;
 }
 .cf-left{}
-.cf-name{font-family:var(--serif);font-size:36px;font-style:italic;font-weight:400;color:var(--t1);margin-bottom:6px;line-height:1.2}
+.cf-name{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--t1);margin-bottom:6px;line-height:1.2}
 .cf-tagline{font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--t3)}
 .cf-links{display:flex;flex-direction:column;gap:2px;align-items:flex-end}
 .cf-link{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:300;color:var(--t2);text-decoration:none;transition:color .15s;padding:7px 0;letter-spacing:.02em}
@@ -427,7 +427,7 @@ body.admin-on .cf-edit-row{display:flex}
 #panel.open{transform:translateX(0)}
 .ph{padding:24px 26px 0;border-bottom:1px solid var(--border);flex-shrink:0}
 .ph-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.ph-title{font-family:var(--serif);font-size:22px;font-style:italic;font-weight:400}
+.ph-title{font-family:var(--serif);font-size:22px;font-weight:400}
 .ph-x{background:none;border:none;color:var(--t3);font-size:22px;line-height:1;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:var(--r);transition:all .14s}
 .ph-x:hover{color:var(--red);background:rgba(184,64,64,.1)}
 .ptabs{display:flex}
@@ -500,7 +500,7 @@ body.admin-on .cf-edit-row{display:flex}
 #share-modal{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
 #share-modal.open{display:flex;animation:fi .18s ease}
 #share-box{background:var(--s2);border:1px solid var(--border2);border-radius:16px;padding:40px 36px 36px;width:420px;max-width:100%;box-shadow:0 40px 100px rgba(0,0,0,.8);position:relative;animation:su .2s cubic-bezier(.22,.68,0,1.15)}
-.share-title{font-family:var(--serif);font-size:26px;font-style:italic;font-weight:400;margin-bottom:4px}
+.share-title{font-family:var(--serif);font-size:26px;font-weight:400;margin-bottom:4px}
 .share-sub{font-size:12px;color:var(--t3);margin-bottom:20px}
 .share-link-row{display:flex;gap:8px;margin-bottom:24px}
 .share-link-row input{flex:1;padding:10px 14px;background:var(--s1);border:1px solid var(--border);border-radius:100px;color:var(--t2);font-size:11px;outline:none;cursor:text}
@@ -528,8 +528,8 @@ body.admin-on .cf-edit-row{display:flex}
   .carr-btn{width:36px;height:36px;font-size:18px}
   .carr-btn.carr-prev{left:6px}
   .carr-btn.carr-next{right:6px}
-  .col-section{padding:72px 0 0}
-  .col-divider{margin:72px 0 0}
+  .col-section{padding:40px 0 0}
+  .col-divider{margin:56px 0 0}
   #panel{width:100%;border-left:none}
   .dv-bar{padding:0 16px;gap:8px;height:52px}
   #dv-title{font-size:18px}
