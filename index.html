@@ -810,17 +810,14 @@ async function lsDir(path){
 
 /* MANIFEST */
 async function loadDB(){
-  // Fetch from raw.githubusercontent.com — updates within seconds of a commit.
-  // Falls back to relative URL (GitHub Pages) if rawBase isn't available yet.
-  const urls = [];
-  if(CFG?.user && CFG?.repo && CFG?.branch)
-    urls.push(`${rawBase()}/${MANIFEST}?t=${Date.now()}`);
-  urls.push(`${MANIFEST}?t=${Date.now()}`);
+  // _data.json starts with _ so Jekyll (GitHub Pages) ignores it without .nojekyll.
+  // Always fetch from raw.githubusercontent.com which serves the real committed file.
+  const rawUrl = `https://raw.githubusercontent.com/${CFG.user}/${CFG.repo}/${CFG.branch}/${MANIFEST}?t=${Date.now()}`;
 
-  for(const url of urls){
-    try{
-      const r = await fetch(url);
-      if(!r.ok) continue;
+  try{
+    const r = await fetch(rawUrl);
+    console.log('[loadDB] raw fetch', r.status, rawUrl);
+    if(r.ok){
       const d = await r.json();
       if(d && typeof d === 'object'){
         DB = d;
@@ -828,10 +825,31 @@ async function loadDB(){
         if(!DB.collections) DB.collections = [];
         if(!DB.contact)     DB.contact     = {};
         DB.collections.forEach(c=>{ if(!Array.isArray(c.photos)) c.photos=[]; });
-        return; // success — stop trying
+        console.log('[loadDB] loaded', DB.collections.length, 'collections');
+        return;
       }
-    }catch{}
-  }
+    }
+  }catch(e){ console.warn('[loadDB] raw fetch failed:', e.message); }
+
+  // fallback: relative URL (works if .nojekyll exists and Pages is up to date)
+  try{
+    const r2 = await fetch(`${MANIFEST}?t=${Date.now()}`);
+    console.log('[loadDB] relative fetch', r2.status);
+    if(r2.ok){
+      const d = await r2.json();
+      if(d && typeof d === 'object'){
+        DB = d;
+        if(!DB.meta)        DB.meta        = {title: CFG?.title||'Portfolio'};
+        if(!DB.collections) DB.collections = [];
+        if(!DB.contact)     DB.contact     = {};
+        DB.collections.forEach(c=>{ if(!Array.isArray(c.photos)) c.photos=[]; });
+        console.log('[loadDB] loaded via relative URL', DB.collections.length, 'collections');
+        return;
+      }
+    }
+  }catch(e){ console.warn('[loadDB] relative fetch failed:', e.message); }
+
+  console.error('[loadDB] both fetches failed — check .nojekyll exists and _data.json is committed');
 }
 async function saveDB(msg='Saved'){toast('Saving\u2026','inf');await upsert(MANIFEST,b64json(DB),'Update portfolio manifest');toast(msg,'ok');}
 
@@ -1133,11 +1151,18 @@ function applyFocus(stage, idx, animate = true) {
   if (!info) return;
   const {items, n, dotsEl} = info;
 
-  const wrapW = stage.parentElement.offsetWidth ||
-                stage.parentElement.getBoundingClientRect().width;
+  const wrapW = stage.parentElement.getBoundingClientRect().width || stage.parentElement.offsetWidth;
   if (!wrapW) { setTimeout(() => applyFocus(stage, idx, animate), 60); return; }
 
-  const offset = wrapW / 2 - CAR_W / 2 - idx * (CAR_W + CAR_GAP);
+  // Measure actual item dimensions at runtime so mobile CSS overrides are respected
+  const item0 = items[0];
+  const itemRect = item0.getBoundingClientRect();
+  const itemW = itemRect.width || item0.offsetWidth || CAR_W;
+  const style  = getComputedStyle(item0);
+  const gap    = parseFloat(style.marginLeft) + parseFloat(style.marginRight) || CAR_GAP;
+  const step   = itemW + gap;
+
+  const offset = wrapW / 2 - itemW / 2 - idx * step;
 
   if (!animate) {
     stage.style.transition = 'none';
