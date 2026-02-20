@@ -199,7 +199,7 @@ body.admin-on .col-del-btn{display:inline-flex}
 .carousel-stage{
   position:relative;
   width:100%;
-  height:260px;  /* room for active item (200px * 1.6) vertically centered */
+  height:340px;  /* active item: 200px * 1.6 = 320px, +10px breathing room each side */
 }
 
 /* ALL items — absolute positioned, moved individually via translateX
@@ -272,7 +272,7 @@ body.admin-on .car-del{display:flex}
 .carr-btn.carr-next{right:12px}
 
 /* pill dots */
-.car-dots{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:28px;flex-wrap:wrap;padding:0 80px;position:relative;z-index:5}
+.car-dots{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:20px;flex-wrap:wrap;padding:0 80px;position:relative;z-index:10}
 .car-dot{
   height:4px;border-radius:100px;background:var(--border2);cursor:pointer;
   transition:background .3s,width .3s cubic-bezier(.4,0,.2,1);
@@ -523,14 +523,15 @@ body.admin-on .cf-edit-row{display:flex}
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   #hdr{padding:0 20px}
-  .car-item{flex:0 0 160px;height:150px;margin:0 8px}
-  .car-item.car-active{transform:scale(1.55)}
+  .car-item{width:160px;height:150px;margin-top:-75px}
+  .carousel-stage{height:270px}
   .carr-btn{width:36px;height:36px;font-size:18px}
   .carr-btn.carr-prev{left:6px}
   .carr-btn.carr-next{right:6px}
-  .col-section{padding:40px 0 0}
+  .col-section{padding:24px 0 0}
   .col-divider{margin:56px 0 0}
   #panel{width:100%;border-left:none}
+  .carousel-wrap{padding-top:24px}
   .dv-bar{padding:0 16px;gap:8px;height:52px}
   #dv-title{font-size:18px}
   .dv-feed{padding:40px 20px 80px}
