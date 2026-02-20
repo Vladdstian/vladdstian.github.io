@@ -192,14 +192,15 @@ body.admin-on .col-del-btn{display:inline-flex}
 /* ── FOCUSED CAROUSEL ── */
 .carousel-wrap{
   position:relative;
-  padding:52px 0 28px;
-  overflow:hidden;
+  padding:52px 0 36px;
+  overflow-x:clip;   /* clips horizontal (hidden items) but NOT vertical */
+  overflow-y:visible; /* lets the scaled active photo overflow without clipping */
 }
 .carousel-stage{
   display:flex;align-items:center;
   transition:transform .5s cubic-bezier(.4,0,.2,1);
   will-change:transform;
-  padding:16px 0;
+  padding:24px 0;
 }
 
 /* ALL items — same base dimensions, scale transforms handle the difference */
@@ -232,7 +233,7 @@ body.admin-on .col-del-btn{display:inline-flex}
 .car-item.car-near{
   filter:brightness(.62) saturate(.72);
   opacity:.75;
-  transform:scale(1.04);
+  transform:scale(1);
   z-index:2;
 }
 .car-item img{
@@ -273,7 +274,7 @@ body.admin-on .car-del{display:flex}
 .carr-btn.carr-next{right:12px}
 
 /* pill dots */
-.car-dots{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:20px;flex-wrap:wrap;padding:0 80px}
+.car-dots{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:28px;flex-wrap:wrap;padding:0 80px;position:relative;z-index:5}
 .car-dot{
   height:4px;border-radius:100px;background:var(--border2);cursor:pointer;
   transition:background .3s,width .3s cubic-bezier(.4,0,.2,1);
@@ -1174,15 +1175,12 @@ function applyFocus(stage, idx, animate = true) {
     stage.style.transform = `translateX(${offset}px)`;
   }
 
-  // Only apply active/near classes for real in-range indices
-  if (idx >= 0 && idx < n) {
-    items.forEach((item, i) => {
-      const dist = Math.abs(i - idx);
-      item.classList.toggle('car-active', dist === 0);
-      item.classList.toggle('car-near',   dist === 1);
-      item.style.pointerEvents = dist === 0 ? 'auto' : 'none';
-    });
-  }
+  items.forEach((item, i) => {
+    const dist = Math.abs(i - idx);
+    item.classList.toggle('car-active', dist === 0);
+    item.classList.toggle('car-near',   dist === 1);
+    item.style.pointerEvents = dist === 0 ? 'auto' : 'none';
+  });
 
   [...dotsEl.querySelectorAll('.car-dot')]
     .forEach((d, i) => d.classList.toggle('on', i === idx));
@@ -1195,19 +1193,11 @@ function goToIdx(stage, idx) {
   const prev = info.idx;
   idx = ((idx % info.n) + info.n) % info.n;
 
-  // If wrapping (jump distance > half the strip), teleport silently to a
-  // "virtual" position just one step away, then animate the final step.
-  // This prevents the strip from sliding across all items visibly.
+  // If wrapping (e.g. last→first or first→last), jump instantly — no slide.
+  // Animating a wrap would visually drag the entire strip across the screen.
   const dist = Math.abs(idx - prev);
-  if (dist > info.n / 2) {
-    // going backward past 0 → land just after last item, then step back
-    // going forward past last → land just before first item, then step forward
-    const virtualIdx = idx < prev ? info.n : -1;
-    applyFocus(stage, virtualIdx, false);   // instant jump off-screen
-    requestAnimationFrame(() => applyFocus(stage, idx, true)); // animate one step
-  } else {
-    applyFocus(stage, idx);
-  }
+  const isWrap = dist > info.n / 2;
+  applyFocus(stage, idx, !isWrap);
 }
 
 function carPrev(cid) {
