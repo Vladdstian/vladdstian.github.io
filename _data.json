@@ -93,5 +93,12 @@
       ]
     }
   ],
-  "contact": {}
+  "contact": {
+    "name": "Anca Dumi",
+    "tagline": "",
+    "email": "",
+    "instagram": "",
+    "website": "",
+    "phone": ""
+  }
 }
