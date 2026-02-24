@@ -370,9 +370,50 @@
       "id": "mm0y4eocdzjg",
       "name": "Beautiful natural light.",
       "slug": "beautiful-natural-light",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mm0y5pj0bgf3",
+          "path": "photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0y5rnjl583",
+          "path": "photos/beautiful-natural-light/mm0y5rnjl583.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5rnjl583.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5thhao9b",
+          "path": "photos/beautiful-natural-light/mm0y5thhao9b.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5thhao9b.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5v60xrjo",
+          "path": "photos/beautiful-natural-light/mm0y5v60xrjo.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5v60xrjo.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5wturgxl",
+          "path": "photos/beautiful-natural-light/mm0y5wturgxl.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5wturgxl.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
