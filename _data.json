@@ -460,9 +460,34 @@
       "id": "mm0yc3ahdw1a",
       "name": "Seaside.",
       "slug": "seaside",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/seaside/mm0ycsfux5zj.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mm0ycsfux5zj",
+          "path": "photos/seaside/mm0ycsfux5zj.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/seaside/mm0ycsfux5zj.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0ycucsdff8",
+          "path": "photos/seaside/mm0ycucsdff8.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/seaside/mm0ycucsdff8.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0ye5k8n8k3",
+          "path": "photos/seaside/mm0ye5k8n8k3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/seaside/mm0ye5k8n8k3.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
