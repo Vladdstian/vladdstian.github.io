@@ -419,9 +419,42 @@
       "id": "mm0y883krhhj",
       "name": "Portraits.",
       "slug": "portraits",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ya1iuc824.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mm0ya1iuc824",
+          "path": "photos/portraits/mm0ya1iuc824.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ya1iuc824.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0ya3c71jok",
+          "path": "photos/portraits/mm0ya3c71jok.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ya3c71jok.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0ya568neqy",
+          "path": "photos/portraits/mm0ya568neqy.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ya568neqy.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0ya6yzicjv",
+          "path": "photos/portraits/mm0ya6yzicjv.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ya6yzicjv.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
