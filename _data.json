@@ -485,42 +485,17 @@
       "id": "mm0ymcmfllcb",
       "name": "Castles. Fairy tales.",
       "slug": "castles-fairy-tales",
-      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yop50603o.jpg",
+      "cover": null,
       "description": "",
-      "photos": [
-        {
-          "id": "mm0yop50603o",
-          "path": "photos/castles-fairy-tales/mm0yop50603o.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yop50603o.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1590
-        },
-        {
-          "id": "mm0yor8yy2fp",
-          "path": "photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mm0yot11v5v4",
-          "path": "photos/castles-fairy-tales/mm0yot11v5v4.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yot11v5v4.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mm0yov0b3y79",
-          "path": "photos/castles-fairy-tales/mm0yov0b3y79.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yov0b3y79.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        }
-      ]
+      "photos": []
+    },
+    {
+      "id": "mm0yqvry26nb",
+      "name": "So Christmasy!",
+      "slug": "so-christmasy",
+      "cover": null,
+      "description": "",
+      "photos": []
     }
   ],
   "contact": {
