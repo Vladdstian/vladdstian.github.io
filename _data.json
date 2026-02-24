@@ -404,6 +404,30 @@
           "caption": "",
           "w": 1365,
           "h": 2048
+        },
+        {
+          "id": "mm0yk7cmklqq",
+          "path": "photos/portraits/mm0yk7cmklqq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0yk7cmklqq.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yk92oicpl",
+          "path": "photos/portraits/mm0yk92oicpl.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0yk92oicpl.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0ykaw99tlg",
+          "path": "photos/portraits/mm0ykaw99tlg.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ykaw99tlg.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0ykd2vujwb",
+          "path": "photos/portraits/mm0ykd2vujwb.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/portraits/mm0ykd2vujwb.jpg",
+          "caption": ""
         }
       ]
     },
@@ -436,9 +460,58 @@
       "id": "mm0ymcmfllcb",
       "name": "Castles. Fairy tales.",
       "slug": "castles-fairy-tales",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yn4h34f1n.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mm0yn4h34f1n",
+          "path": "photos/castles-fairy-tales/mm0yn4h34f1n.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yn4h34f1n.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yn6jp4tq1",
+          "path": "photos/castles-fairy-tales/mm0yn6jp4tq1.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yn6jp4tq1.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yn8zi2zxn",
+          "path": "photos/castles-fairy-tales/mm0yn8zi2zxn.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yn8zi2zxn.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0ynb4ss1l3",
+          "path": "photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yop50603o",
+          "path": "photos/castles-fairy-tales/mm0yop50603o.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yop50603o.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yor8yy2fp",
+          "path": "photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yot11v5v4",
+          "path": "photos/castles-fairy-tales/mm0yot11v5v4.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yot11v5v4.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mm0yov0b3y79",
+          "path": "photos/castles-fairy-tales/mm0yov0b3y79.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yov0b3y79.jpg",
+          "caption": ""
+        }
+      ]
     },
     {
       "id": "mm0yqvry26nb",
@@ -509,6 +582,55 @@
           "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yuqw40yao.jpg",
           "caption": "",
           "w": 1363,
+          "h": 2048
+        }
+      ]
+    },
+    {
+      "id": "mm0y4eocdzjg",
+      "name": "Beautiful natural light.",
+      "slug": "beautiful-natural-light",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mm0y5pj0bgf3",
+          "path": "photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5pj0bgf3.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mm0y5rnjl583",
+          "path": "photos/beautiful-natural-light/mm0y5rnjl583.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5rnjl583.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5thhao9b",
+          "path": "photos/beautiful-natural-light/mm0y5thhao9b.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5thhao9b.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5v60xrjo",
+          "path": "photos/beautiful-natural-light/mm0y5v60xrjo.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5v60xrjo.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mm0y5wturgxl",
+          "path": "photos/beautiful-natural-light/mm0y5wturgxl.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/beautiful-natural-light/mm0y5wturgxl.jpg",
+          "caption": "",
+          "w": 1365,
           "h": 2048
         }
       ]
