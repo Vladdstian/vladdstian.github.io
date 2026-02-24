@@ -493,9 +493,74 @@
       "id": "mm0yqvry26nb",
       "name": "So Christmasy!",
       "slug": "so-christmasy",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yuax9maho.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mm0yuax9maho",
+          "path": "photos/so-christmasy/mm0yuax9maho.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yuax9maho.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mm0yueeatwnq",
+          "path": "photos/so-christmasy/mm0yueeatwnq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yueeatwnq.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1363
+        },
+        {
+          "id": "mm0yugroz8wk",
+          "path": "photos/so-christmasy/mm0yugroz8wk.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yugroz8wk.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1363
+        },
+        {
+          "id": "mm0yuj5how57",
+          "path": "photos/so-christmasy/mm0yuj5how57.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yuj5how57.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mm0yul86skjb",
+          "path": "photos/so-christmasy/mm0yul86skjb.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yul86skjb.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mm0yunhn1aaw",
+          "path": "photos/so-christmasy/mm0yunhn1aaw.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yunhn1aaw.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1363
+        },
+        {
+          "id": "mm0yupeeqiic",
+          "path": "photos/so-christmasy/mm0yupeeqiic.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yupeeqiic.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        },
+        {
+          "id": "mm0yuqw40yao",
+          "path": "photos/so-christmasy/mm0yuqw40yao.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/so-christmasy/mm0yuqw40yao.jpg",
+          "caption": "",
+          "w": 1363,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
