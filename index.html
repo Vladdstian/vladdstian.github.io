@@ -548,6 +548,25 @@ body.admin-on .cf-edit-row{display:flex}
   .col-name{font-size:clamp(28px,8vw,40px)}
   .dv-feed{padding:32px 16px 80px}
 }
+
+/* ── CONTACT BUTTON ── */
+#btn-contact{
+  display:flex;align-items:center;gap:7px;
+  background:none;border:1px solid var(--border2);
+  padding:7px 18px;border-radius:100px;
+  font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--t2);text-decoration:none;cursor:pointer;transition:all .2s;
+}
+#btn-contact:hover{border-color:var(--acc);color:var(--acc)}
+#btn-contact svg{width:12px;height:12px;flex-shrink:0}
+
+/* ── SETTINGS PANE ── */
+.sfield{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.sfield label{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--t3)}
+.sfield input{padding:10px 14px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);color:var(--t1);font-size:13px;font-weight:300;outline:none;transition:border-color .15s;width:100%;font-family:var(--sans)}
+.sfield input:focus{border-color:var(--acc)}
+.sfield input::placeholder{color:var(--t3)}
+.s-hint{font-size:10px;color:var(--t3);text-align:center;margin-top:10px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -559,6 +578,10 @@ body.admin-on .cf-edit-row{display:flex}
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 10a6 6 0 1 0 1.4-3.8"/><path d="M4 4v3.5h3.5"/></svg>
       Sync
     </button>
+    <a id="btn-contact" href="#" onclick="doMailto(event)">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="5" width="16" height="12" rx="1.5"/><path d="M2 7l8 5 8-5"/></svg>
+      Contact
+    </a>
     <button id="btn-login" onclick="openLogin()">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="9" width="14" height="9" rx="1.5"/><path d="M7 9V6.5a3 3 0 016 0V9"/></svg>
       Login
@@ -676,6 +699,10 @@ body.admin-on .cf-edit-row{display:flex}
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14V4M6 8l4-4 4 4"/><path d="M3 17h14"/></svg>
         Upload
       </button>
+      <button class="ptab" data-pane="settings" onclick="switchTab(this)">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42"/></svg>
+        Settings
+      </button>
     </div>
   </div>
   <div class="pb">
@@ -713,10 +740,33 @@ body.admin-on .cf-edit-row{display:flex}
         <button class="btn btn-ghost" onclick="clearQ()">Clear</button>
       </div>
     </div>
+    <div class="pane" id="pane-settings">
+
+      <div class="slbl">Site</div>
+      <div class="sfield"><label>Site title</label><input id="s-title" placeholder="Anca's Portfolio" oninput="liveSettings()"/></div>
+      <div class="sfield"><label>Contact email</label><input id="s-email" type="email" placeholder="hello@example.com" oninput="liveSettings()"/></div>
+
+      <hr class="div"/>
+      <div class="slbl">Profile</div>
+      <div class="sfield"><label>Display name</label><input id="s-name" placeholder="Anca" oninput="liveSettings()"/></div>
+      <div class="sfield"><label>Tagline</label><input id="s-tagline" placeholder="Photography" oninput="liveSettings()"/></div>
+
+      <hr class="div"/>
+      <div class="slbl">Links</div>
+      <div class="sfield"><label>Instagram</label><input id="s-ig" placeholder="@username" oninput="liveSettings()"/></div>
+      <div class="sfield"><label>Website</label><input id="s-web" placeholder="https://…" oninput="liveSettings()"/></div>
+      <div class="sfield"><label>Phone</label><input id="s-phone" placeholder="+40 …" oninput="liveSettings()"/></div>
+
+      <hr class="div"/>
+      <button class="btn btn-gold" style="width:100%" onclick="saveSettings()">Save settings</button>
+      <p class="s-hint">Saved to your GitHub repository.</p>
+
+    </div>
   </div>
 </aside>
 
 <div id="toast"></div>
+
 
 
 <!-- SHARE MODAL -->
@@ -855,29 +905,66 @@ async function loadDB(){
 async function saveDB(msg='Saved'){toast('Saving\u2026','inf');await upsert(MANIFEST,b64json(DB),'Update portfolio manifest');toast(msg,'ok');}
 
 /* SYNC */
-async function syncCol(col){
-  const files=await lsDir(`photos/${col.slug}`);
-  const IMG=/\.(jpe?g|png|webp|gif|avif)$/i;
-  const known=new Set(col.photos.map(p=>p.path));
-  let added=0;
-  for(const f of files){
-    if(f.type!=='file'||!IMG.test(f.name)||known.has(f.path))continue;
-    const pid=f.name.replace(/\.[^.]+$/,'');
-    col.photos.push({id:pid,path:f.path,url:`${rawBase()}/${f.path}`,caption:''});
-    if(!col.cover)col.cover=col.photos[col.photos.length-1].url;added++;
-  }
-  return added;
-}
 async function syncAll(){
   if(!CFG){toast('Settings not loaded','err');return;}
   if(!TOKEN){toast('Login required to sync','err');setTimeout(openLogin,600);return;}
-  toast('Scanning\u2026','inf');let total=0;
-  for(const col of DB.collections){try{total+=await syncCol(col);}catch{}}
-  if(total===0){toast('All in sync \u2713','ok');renderPage();return;}
-  try{await saveDB(`Synced ${total} photo${total!==1?'s':''}`);renderPage();if(TOKEN)renderColList();}
-  catch(e){toast(e.message,'err');}
-}
+  toast('Rebuilding from repository\u2026','inf');
 
+  const IMG=/\.(jpe?g|png|webp|gif|avif)$/i;
+
+  // 1. List folders under photos/
+  const topLevel = await lsDir('photos');
+  if(!Array.isArray(topLevel)||!topLevel.length){
+    toast('No photos/ folder found in repo','err');return;
+  }
+  const folders = topLevel.filter(f=>f.type==='dir');
+  if(!folders.length){toast('No photo folders found in photos/','inf');renderPage();return;}
+
+  // 2. Build lookup of existing collections by slug (to preserve captions/descriptions)
+  const existing={};
+  for(const col of DB.collections) existing[col.slug]=col;
+
+  const newCollections=[];
+  let totalPhotos=0;
+
+  for(const folder of folders){
+    const slug=folder.name;
+    const files=await lsDir(`photos/${slug}`);
+    const photos=(Array.isArray(files)?files:[]).filter(f=>f.type==='file'&&IMG.test(f.name));
+    if(!photos.length)continue;
+
+    const prev=existing[slug]||{};
+    const prevByPath={};
+    (prev.photos||[]).forEach(p=>{prevByPath[p.path]=p;});
+
+    const colPhotos=photos.map(f=>{
+      const old=prevByPath[f.path];
+      return old ? old : {id:f.name.replace(/\.[^.]+$/,''),path:f.path,url:`${rawBase()}/${f.path}`,caption:''};
+    });
+
+    const coverValid=colPhotos.some(p=>p.url===prev.cover);
+    newCollections.push({
+      id:          prev.id   || uid(),
+      name:        prev.name || slug.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()),
+      slug,
+      cover:       coverValid ? prev.cover : (colPhotos[0]?.url||null),
+      description: prev.description||'',
+      photos:      colPhotos,
+    });
+    totalPhotos+=colPhotos.length;
+  }
+
+  // 3. Preserve existing order, append any new folders at end
+  const ordered=[];
+  for(const col of DB.collections){const r=newCollections.find(c=>c.slug===col.slug);if(r)ordered.push(r);}
+  for(const col of newCollections){if(!ordered.find(c=>c.slug===col.slug))ordered.push(col);}
+  DB.collections=ordered;
+
+  try{
+    await saveDB(`Synced: ${ordered.length} collection${ordered.length!==1?'s':''}, ${totalPhotos} photo${totalPhotos!==1?'s':''}`);
+    renderPage();if(TOKEN)renderColList();
+  }catch(e){toast(e.message,'err');}
+}
 /* AUTH */
 function openLogin(){G('tok-inp').value='';G('tok-err').classList.remove('show');G('tok-err').textContent='';G('tok-modal').classList.add('open');setTimeout(()=>G('tok-inp').focus(),80);}
 function closeLogin(){G('tok-modal').classList.remove('open');}
@@ -906,6 +993,7 @@ function switchTab(btn){
   document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
   btn.classList.add('on');G(`pane-${btn.dataset.pane}`).classList.add('on');
   if(btn.dataset.pane==='upload')refreshUploadPane();
+  if(btn.dataset.pane==='settings')openSettingsPane();
 }
 
 /* CONTACT FOOTER */
@@ -963,6 +1051,14 @@ function openShareModal(slug, title) {
   G('share-modal').classList.add('open');
 }
 function closeShareModal() { G('share-modal').classList.remove('open'); }
+/* CONTACT */
+function doMailto(e) {
+  e.preventDefault();
+  const to = CFG?.contactEmail || DB.contact?.email || '';
+  if (!to) { toast('No contact email set — add it in Settings', 'err'); return; }
+  window.location.href = `mailto:${to}?subject=${encodeURIComponent('Photography enquiry')}`;
+}
+
 function copyPhotoLink(url) {
   navigator.clipboard.writeText(url)
     .then(() => toast('Link copied ✓','ok'))
@@ -1486,13 +1582,27 @@ async function confirmDelCol(cid){
   const col=DB.collections.find(c=>c.id===cid);if(!col)return;
   const n=col.photos.length;
   if(!confirm(n>0?`Delete "${col.name}" and its ${n} photo${n!==1?'s':''}?\nThis cannot be undone.`:`Delete "${col.name}"?`))return;
+
   toast('Deleting\u2026','inf');
-  try{
-    for(const p of col.photos)await rmFile(p.path,`Delete ${p.id}`);
-    DB.collections=DB.collections.filter(c=>c.id!==cid);
-    if(uploadCid===cid)uploadCid=null;if(detailCid===cid)closeDetail();
-    await saveDB('Collection deleted');renderPage();renderColList();
-  }catch(e){toast(e.message,'err');}
+
+  // 1. Remove from DB and update UI immediately
+  DB.collections=DB.collections.filter(c=>c.id!==cid);
+  if(uploadCid===cid)uploadCid=null;
+  if(detailCid===cid)closeDetail();
+  renderPage();renderColList();
+
+  // 2. Save DB first — collection disappears for all visitors right away
+  try{ await saveDB('Collection deleted'); }
+  catch(e){ toast(e.message,'err'); return; }
+
+  // 3. Delete all photo files in parallel (best-effort)
+  if(n>0){
+    toast(`Removing ${n} file${n!==1?'s':''} from storage\u2026`,'inf');
+    const results=await Promise.allSettled(col.photos.map(p=>rmFile(p.path,`Delete ${p.id}`)));
+    const failed=results.filter(r=>r.status==='rejected').length;
+    if(failed>0) toast(`Done — ${failed} file${failed!==1?'s':''} could not be removed from storage`,'inf');
+    else toast(`Collection and all ${n} photo${n!==1?'s':''} deleted \u2713`,'ok');
+  }
 }
 
 /* UPLOAD */
@@ -1586,6 +1696,47 @@ function toast(msg,type='ok'){
   const el=G('toast');el.className=`show ${type}`;
   el.innerHTML=type==='inf'?`<span class="spinner" style="border-top-color:var(--t2)"></span>${msg}`:msg;
   clearTimeout(toastT);if(type!=='inf')toastT=setTimeout(()=>el.classList.remove('show'),4000);
+}
+
+/* SETTINGS PANE */
+function openSettingsPane() {
+  // populate fields from DB.contact + CFG
+  const c = DB.contact || {};
+  G('s-title').value   = CFG?.title || DB.meta?.title || '';
+  G('s-email').value   = CFG?.contactEmail || c.email || '';
+  G('s-name').value    = c.name || '';
+  G('s-tagline').value = c.tagline || '';
+  G('s-ig').value      = c.instagram || '';
+  G('s-web').value     = c.website || '';
+  G('s-phone').value   = c.phone || '';
+}
+function liveSettings() {
+  // live-update visible name/tagline in footer as user types
+  const name    = G('s-name').value.trim();
+  const tagline = G('s-tagline').value.trim();
+  if (G('cf-name'))    G('cf-name').textContent    = name    || 'Anca';
+  if (G('cf-tagline')) G('cf-tagline').textContent = tagline || 'Photography';
+}
+async function saveSettings() {
+  const c = DB.contact || {};
+  DB.contact = {
+    ...c,
+    name:      G('s-name').value.trim(),
+    tagline:   G('s-tagline').value.trim(),
+    email:     G('s-email').value.trim(),
+    instagram: G('s-ig').value.trim(),
+    website:   G('s-web').value.trim(),
+    phone:     G('s-phone').value.trim(),
+  };
+  if (DB.meta) DB.meta.title = G('s-title').value.trim() || DB.meta.title;
+  // contactEmail goes into DB so it survives without settings.json change
+  CFG.contactEmail = G('s-email').value.trim();
+  renderContact();
+  try {
+    await saveDB('Settings saved');
+  } catch(e) {
+    toast(e.message, 'err');
+  }
 }
 
 /* BOOT */
