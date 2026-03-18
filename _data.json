@@ -576,9 +576,58 @@
       "id": "mmvsna4mi5xk",
       "name": "Spring blossom",
       "slug": "spring-blossom",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsod9wj0ij.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mmvsod9wj0ij",
+          "path": "photos/spring-blossom/mmvsod9wj0ij.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsod9wj0ij.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mmvsof6ssouq",
+          "path": "photos/spring-blossom/mmvsof6ssouq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsof6ssouq.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mmvsogvyxgjq",
+          "path": "photos/spring-blossom/mmvsogvyxgjq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsogvyxgjq.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1308
+        },
+        {
+          "id": "mmvsoi6m0977",
+          "path": "photos/spring-blossom/mmvsoi6m0977.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsoi6m0977.jpg",
+          "caption": "",
+          "w": 1000,
+          "h": 667
+        },
+        {
+          "id": "mmvsojfdmmi2",
+          "path": "photos/spring-blossom/mmvsojfdmmi2.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsojfdmmi2.jpg",
+          "caption": "",
+          "w": 1000,
+          "h": 717
+        },
+        {
+          "id": "mmvsokz4s91k",
+          "path": "photos/spring-blossom/mmvsokz4s91k.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsokz4s91k.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        }
+      ]
     }
   ],
   "contact": {
