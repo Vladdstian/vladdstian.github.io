@@ -4,127 +4,6 @@
   },
   "collections": [
     {
-      "id": "mmvsna4mi5xk",
-      "name": "Spring blossom",
-      "slug": "spring-blossom",
-      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxytrsbx5c.jpg",
-      "description": "",
-      "photos": [
-        {
-          "id": "mmvsogvyxgjq",
-          "path": "photos/spring-blossom/mmvsogvyxgjq.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsogvyxgjq.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1308
-        },
-        {
-          "id": "mmvsoi6m0977",
-          "path": "photos/spring-blossom/mmvsoi6m0977.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsoi6m0977.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 1000,
-          "h": 667
-        },
-        {
-          "id": "mmvsojfdmmi2",
-          "path": "photos/spring-blossom/mmvsojfdmmi2.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsojfdmmi2.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 1000,
-          "h": 717
-        },
-        {
-          "id": "mmvsokz4s91k",
-          "path": "photos/spring-blossom/mmvsokz4s91k.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsokz4s91k.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mmvsqzikow86",
-          "path": "photos/spring-blossom/mmvsqzikow86.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsqzikow86.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mmvsr1fdkfi6",
-          "path": "photos/spring-blossom/mmvsr1fdkfi6.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsr1fdkfi6.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mmvsr3867y13",
-          "path": "photos/spring-blossom/mmvsr3867y13.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsr3867y13.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mmvsr8ocxp9l",
-          "path": "photos/spring-blossom/mmvsr8ocxp9l.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsr8ocxp9l.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 667,
-          "h": 1000
-        },
-        {
-          "id": "mmvsrar0j2fn",
-          "path": "photos/spring-blossom/mmvsrar0j2fn.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsrar0j2fn.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mmvsrcz5uweg",
-          "path": "photos/spring-blossom/mmvsrcz5uweg.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsrcz5uweg.jpg",
-          "caption": "Parc de la Vallée aux Loups, Iles de France",
-          "w": 2048,
-          "h": 1567
-        },
-        {
-          "id": "mnoxytrsbx5c",
-          "path": "photos/spring-blossom/mnoxytrsbx5c.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxytrsbx5c.jpg",
-          "caption": "Domaine de Sceaux",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnoxyw7ga26s",
-          "path": "photos/spring-blossom/mnoxyw7ga26s.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxyw7ga26s.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnoxyy8ggr4p",
-          "path": "photos/spring-blossom/mnoxyy8ggr4p.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxyy8ggr4p.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnoxz0dp4ky4",
-          "path": "photos/spring-blossom/mnoxz0dp4ky4.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxz0dp4ky4.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        }
-      ]
-    },
-    {
       "id": "mnc227xoqzpb",
       "name": "The muse got lost in the museum",
       "slug": "the-muse-got-lost-in-the-museum",
@@ -752,24 +631,6 @@
           "path": "photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
           "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
           "caption": "Fontainebleau, France"
-        },
-        {
-          "id": "mm0yor8yy2fp",
-          "path": "photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yor8yy2fp.jpg",
-          "caption": ""
-        },
-        {
-          "id": "mm0yot11v5v4",
-          "path": "photos/castles-fairy-tales/mm0yot11v5v4.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yot11v5v4.jpg",
-          "caption": ""
-        },
-        {
-          "id": "mm0yov0b3y79",
-          "path": "photos/castles-fairy-tales/mm0yov0b3y79.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0yov0b3y79.jpg",
-          "caption": ""
         }
       ]
     },
@@ -845,6 +706,83 @@
           "h": 2048
         }
       ]
+    },
+    {
+      "id": "mnx54v7qu32i",
+      "name": "Spring Blossom",
+      "slug": "spring-blossom",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsogvyxgjq.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mmvsogvyxgjq",
+          "path": "photos/spring-blossom/mmvsogvyxgjq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsogvyxgjq.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mmvsoi6m0977",
+          "path": "photos/spring-blossom/mmvsoi6m0977.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsoi6m0977.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mmvsojfdmmi2",
+          "path": "photos/spring-blossom/mmvsojfdmmi2.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsojfdmmi2.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mmvsrar0j2fn",
+          "path": "photos/spring-blossom/mmvsrar0j2fn.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsrar0j2fn.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mmvsrcz5uweg",
+          "path": "photos/spring-blossom/mmvsrcz5uweg.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mmvsrcz5uweg.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mnoxytrsbx5c",
+          "path": "photos/spring-blossom/mnoxytrsbx5c.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxytrsbx5c.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mnoxyw7ga26s",
+          "path": "photos/spring-blossom/mnoxyw7ga26s.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxyw7ga26s.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mnoxyy8ggr4p",
+          "path": "photos/spring-blossom/mnoxyy8ggr4p.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxyy8ggr4p.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mnoxz0dp4ky4",
+          "path": "photos/spring-blossom/mnoxz0dp4ky4.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoxz0dp4ky4.jpg",
+          "caption": ""
+        },
+        {
+          "id": "mnoy8inzbuxp",
+          "path": "photos/spring-blossom/mnoy8inzbuxp.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blossom/mnoy8inzbuxp.jpg",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "mnx55gj3fbrl",
+      "name": "Spring blooming",
+      "slug": "spring-blooming",
+      "cover": null,
+      "description": "",
+      "photos": []
     }
   ],
   "contact": {
