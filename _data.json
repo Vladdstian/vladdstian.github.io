@@ -4,6 +4,111 @@
   },
   "collections": [
     {
+      "id": "mnx55gj3fbrl",
+      "name": "Spring blooming",
+      "slug": "spring-blooming",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57r1ia3cj.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mnx57r1ia3cj",
+          "path": "photos/spring-blooming/mnx57r1ia3cj.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57r1ia3cj.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx57u87l678",
+          "path": "photos/spring-blooming/mnx57u87l678.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57u87l678.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx57wx237rj",
+          "path": "photos/spring-blooming/mnx57wx237rj.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57wx237rj.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx580i0kc7u",
+          "path": "photos/spring-blooming/mnx580i0kc7u.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx580i0kc7u.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx582ul82lg",
+          "path": "photos/spring-blooming/mnx582ul82lg.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx582ul82lg.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mnx585dlj3qy",
+          "path": "photos/spring-blooming/mnx585dlj3qy.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx585dlj3qy.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx59qcxpbag",
+          "path": "photos/spring-blooming/mnx59qcxpbag.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59qcxpbag.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx59tcu8lf0",
+          "path": "photos/spring-blooming/mnx59tcu8lf0.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59tcu8lf0.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mnx59vtl8p92",
+          "path": "photos/spring-blooming/mnx59vtl8p92.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59vtl8p92.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mnx5bgesmc61",
+          "path": "photos/spring-blooming/mnx5bgesmc61.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5bgesmc61.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx5bj8zkcey",
+          "path": "photos/spring-blooming/mnx5bj8zkcey.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5bj8zkcey.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mnx5blqd8wlv",
+          "path": "photos/spring-blooming/mnx5blqd8wlv.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5blqd8wlv.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        }
+      ]
+    },
+    {
       "id": "mnc227xoqzpb",
       "name": "The muse got lost in the museum",
       "slug": "the-muse-got-lost-in-the-museum",
@@ -153,111 +258,6 @@
           "caption": "",
           "w": 1000,
           "h": 656
-        }
-      ]
-    },
-    {
-      "id": "mnx55gj3fbrl",
-      "name": "Spring blooming",
-      "slug": "spring-blooming",
-      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57r1ia3cj.jpg",
-      "description": "",
-      "photos": [
-        {
-          "id": "mnx57r1ia3cj",
-          "path": "photos/spring-blooming/mnx57r1ia3cj.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57r1ia3cj.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx57u87l678",
-          "path": "photos/spring-blooming/mnx57u87l678.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57u87l678.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx57wx237rj",
-          "path": "photos/spring-blooming/mnx57wx237rj.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx57wx237rj.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx580i0kc7u",
-          "path": "photos/spring-blooming/mnx580i0kc7u.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx580i0kc7u.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx582ul82lg",
-          "path": "photos/spring-blooming/mnx582ul82lg.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx582ul82lg.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mnx585dlj3qy",
-          "path": "photos/spring-blooming/mnx585dlj3qy.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx585dlj3qy.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx59qcxpbag",
-          "path": "photos/spring-blooming/mnx59qcxpbag.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59qcxpbag.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx59tcu8lf0",
-          "path": "photos/spring-blooming/mnx59tcu8lf0.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59tcu8lf0.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mnx59vtl8p92",
-          "path": "photos/spring-blooming/mnx59vtl8p92.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx59vtl8p92.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
-        },
-        {
-          "id": "mnx5bgesmc61",
-          "path": "photos/spring-blooming/mnx5bgesmc61.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5bgesmc61.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx5bj8zkcey",
-          "path": "photos/spring-blooming/mnx5bj8zkcey.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5bj8zkcey.jpg",
-          "caption": "",
-          "w": 1365,
-          "h": 2048
-        },
-        {
-          "id": "mnx5blqd8wlv",
-          "path": "photos/spring-blooming/mnx5blqd8wlv.jpg",
-          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/spring-blooming/mnx5blqd8wlv.jpg",
-          "caption": "",
-          "w": 2048,
-          "h": 1365
         }
       ]
     },
@@ -736,6 +736,30 @@
           "path": "photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
           "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mm0ynb4ss1l3.jpg",
           "caption": "Fontainebleau, France"
+        },
+        {
+          "id": "mnx5i6wfzjju",
+          "path": "photos/castles-fairy-tales/mnx5i6wfzjju.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mnx5i6wfzjju.jpg",
+          "caption": "Parc de la Vallée aux Loups",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mnx5ia4cz4a8",
+          "path": "photos/castles-fairy-tales/mnx5ia4cz4a8.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mnx5ia4cz4a8.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mnx5icenumsv",
+          "path": "photos/castles-fairy-tales/mnx5icenumsv.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/castles-fairy-tales/mnx5icenumsv.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
         }
       ]
     },
