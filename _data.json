@@ -928,9 +928,138 @@
       "id": "moabkzd68kl3",
       "name": "Fashion",
       "slug": "fashion",
-      "cover": null,
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4rh220je.jpg",
       "description": "",
-      "photos": []
+      "photos": [
+        {
+          "id": "mobu4rh220je",
+          "path": "photos/fashion/mobu4rh220je.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4rh220je.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu4t6qpx5g",
+          "path": "photos/fashion/mobu4t6qpx5g.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4t6qpx5g.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu4vc3ga9s",
+          "path": "photos/fashion/mobu4vc3ga9s.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4vc3ga9s.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mobu4x9ng15d",
+          "path": "photos/fashion/mobu4x9ng15d.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4x9ng15d.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu4z49bml9",
+          "path": "photos/fashion/mobu4z49bml9.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu4z49bml9.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu5129ib6f",
+          "path": "photos/fashion/mobu5129ib6f.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5129ib6f.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mobu52u21d7q",
+          "path": "photos/fashion/mobu52u21d7q.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu52u21d7q.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu54xns3qo",
+          "path": "photos/fashion/mobu54xns3qo.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu54xns3qo.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu5756lltr",
+          "path": "photos/fashion/mobu5756lltr.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5756lltr.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu593b08iv",
+          "path": "photos/fashion/mobu593b08iv.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu593b08iv.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu5b6xxraf",
+          "path": "photos/fashion/mobu5b6xxraf.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5b6xxraf.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mobu5dpenlqk",
+          "path": "photos/fashion/mobu5dpenlqk.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5dpenlqk.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu5fwibm7q",
+          "path": "photos/fashion/mobu5fwibm7q.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5fwibm7q.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mobu5hy0lszx",
+          "path": "photos/fashion/mobu5hy0lszx.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5hy0lszx.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mobu5jwkb024",
+          "path": "photos/fashion/mobu5jwkb024.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5jwkb024.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mobu5m6o6wq6",
+          "path": "photos/fashion/mobu5m6o6wq6.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/fashion/mobu5m6o6wq6.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        }
+      ]
     }
   ],
   "contact": {
