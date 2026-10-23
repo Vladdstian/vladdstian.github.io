@@ -4,6 +4,87 @@
   },
   "collections": [
     {
+      "id": "mvl8l5z23tam",
+      "name": "Autumn",
+      "slug": "autumn",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8meaksbz3.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mvl8meaksbz3",
+          "path": "photos/autumn/mvl8meaksbz3.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8meaksbz3.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mgeblfxf",
+          "path": "photos/autumn/mvl8mgeblfxf.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mgeblfxf.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mi6xx21s",
+          "path": "photos/autumn/mvl8mi6xx21s.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mi6xx21s.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mjvdid9h",
+          "path": "photos/autumn/mvl8mjvdid9h.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mjvdid9h.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mlrjmo8u",
+          "path": "photos/autumn/mvl8mlrjmo8u.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mlrjmo8u.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mvl8mnhzgy0x",
+          "path": "photos/autumn/mvl8mnhzgy0x.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mnhzgy0x.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mpehvo9i",
+          "path": "photos/autumn/mvl8mpehvo9i.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mpehvo9i.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mvl8mrfwvm31",
+          "path": "photos/autumn/mvl8mrfwvm31.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mrfwvm31.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        },
+        {
+          "id": "mvl8mt9mrvgq",
+          "path": "photos/autumn/mvl8mt9mrvgq.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/autumn/mvl8mt9mrvgq.jpg",
+          "caption": "",
+          "w": 2048,
+          "h": 1365
+        }
+      ]
+    },
+    {
       "id": "mnx55gj3fbrl",
       "name": "Spring blooming",
       "slug": "spring-blooming",
@@ -1121,14 +1202,6 @@
           "caption": ""
         }
       ]
-    },
-    {
-      "id": "mvl8l5z23tam",
-      "name": "Autumn",
-      "slug": "autumn",
-      "cover": null,
-      "description": "",
-      "photos": []
     }
   ],
   "contact": {
