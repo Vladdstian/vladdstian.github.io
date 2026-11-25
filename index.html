@@ -121,7 +121,8 @@ footer .copy{color:var(--muted);font-size:12px}
 #lb .foot a:hover{color:#e8a27f;border-color:#e8a27f}
 
 @media (max-width:960px){
-  .links{display:none}
+  nav .links a.on{display:none}nav .links a{padding:6px 10px;font-size:13px}nav .links{gap:0}
+  .logo{font-size:20px}.logo svg{width:32px;height:32px}
   .about{grid-template-columns:1fr;text-align:left}
   .feats{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}
   .albums,.recent{grid-template-columns:repeat(2,1fr);gap:14px}
@@ -139,6 +140,24 @@ footer .copy{color:var(--muted);font-size:12px}
 .strip img{flex:none;height:340px;border-radius:16px;object-fit:cover;cursor:zoom-in;scroll-snap-align:start;background:#e6dcd3;transition:transform .3s}
 .strip img:hover{transform:translateY(-4px)}
 @media (max-width:960px){.strip img{height:240px}}
+/* admin: editing tools on album pages (only after login) */
+.adminbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0}
+.adminbar input,.adminbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;min-width:0}
+.adminbar .btn{padding:9px 16px}
+.ed{position:relative;display:block;flex:none}
+.ed img{width:100%!important;height:100%!important}
+.ed .tools{position:absolute;left:8px;right:8px;bottom:8px;display:flex;gap:4px;justify-content:center;opacity:0;transition:opacity .2s}
+.ed:hover .tools{opacity:1}
+@media (hover:none){.ed .tools{opacity:1}}
+.ed .tools button{border:0;background:rgba(255,250,246,.92);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:14px}
+.ed .tools button:hover{background:var(--acc);color:#fff}
+.share{margin-top:14px;padding:9px 16px}
+#ig{background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff}
+@media (max-width:600px){#lb .p,#lb .n{display:none}#lb img{max-width:96vw}}
+#lbCap{color:#fff}#lbCap:empty{display:none}
+.sheet textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;resize:vertical}
+.sheet details{margin-top:28px;border-top:1px solid var(--line);padding-top:18px}
+.sheet summary{cursor:pointer;font-weight:600}
 /* admin: upload panel (only visible after login) */
 [hidden]{display:none!important}
 .fab{position:fixed;right:24px;bottom:24px;z-index:60;box-shadow:0 14px 30px -10px rgba(0,0,0,.45)}
@@ -194,12 +213,18 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
     <div class="albums" id="albumGrid"></div>
   </section>
 
+  <div class="about" id="about" hidden style="margin-top:100px;grid-template-columns:270px 1fr">
+    <div class="ph"><img id="aboutImg" alt="Anca"/></div>
+    <div><div class="eyebrow acc">About me</div><h2 class="serif">Hi, I'm <span class="acc">Anca</span></h2><p id="aboutTxt" style="white-space:pre-line"></p></div>
+  </div>
+
   <div class="band" id="contact">
     <div class="tx">
       <div class="eyebrow">Let's stay in touch</div>
       <h2 class="serif">Like what you <span style="color:#e08a64">see?</span></h2>
       <p>Say hello, follow along, or just tell me which photo you liked best.</p>
       <a class="btn primary" id="mail" href="#">Get in touch →</a>
+      <a class="btn ghost" id="ig" href="#" target="_blank" rel="noopener" hidden style="margin-left:8px">Instagram ↗</a>
     </div>
     <img id="bandImg" alt=""/>
   </div>
@@ -214,11 +239,11 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
 <div id="view">
   <div class="top"><div class="wrap"><button class="btn ghost" id="back">← All albums</button><a class="logo serif" style="font-size:22px"><svg class="mono" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.1" stroke-dasharray="98 15" transform="rotate(28 20 20)"/><path d="M9.5 30L21 9.5V30M21 9.5C33 9.5 33 30 21 30" stroke="currentColor" stroke-width="1.7"/><path d="M13.6 23H21" stroke="#b0532e" stroke-width="1.7"/></svg>Anca Dumitru</a></div></div>
   <div id="vDeco"></div>
-  <div class="wrap vhead"><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div></div>
+  <div class="wrap vhead"><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div><button class="btn ghost share" id="vShare">Share album ↗</button><div class="adminbar" id="vAdmin"></div></div>
   <div class="wrap"><div class="rows" id="vGrid"></div></div>
 </div>
 
-<div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="foot"><span id="lbCnt"></span><span id="lbFrom" hidden>·&nbsp;&nbsp;<a id="lbAll" href="#"></a></span></div></div>
+<div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="foot"><span id="lbCap"></span><span id="lbCnt"></span><span id="lbFrom" hidden>·&nbsp;&nbsp;<a id="lbAll" href="#"></a></span></div></div>
 
 <button class="btn primary fab" id="upBtn" hidden>＋ Upload photos</button>
 <aside class="sheet" id="sheet" aria-label="Upload photos">
@@ -237,12 +262,20 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
     <label for="albSel">Album</label>
     <select id="albSel"></select>
     <input id="newAlb" type="text" placeholder="New album name" hidden style="margin-top:10px"/>
+    <select id="newTheme" hidden style="margin-top:10px" aria-label="Drawings for the new album"></select>
     <label>Photos</label>
     <label class="drop" id="drop">Drop photos here or <u>choose files</u><input type="file" id="files" accept="image/*" multiple hidden/></label>
     <div class="queue" id="queue"></div>
     <div class="prog"><i id="progFill"></i></div>
     <div class="row"><button class="btn primary" id="doUp">Upload</button><button class="btn ghost" id="logout">Log out</button></div>
     <div class="msg" id="upMsg"></div>
+    <p class="hint" style="margin-top:18px">To delete, reorder or caption photos, open an album: editing tools appear on each photo while you're logged in.</p>
+    <details><summary>Site details</summary>
+      <label for="sIg">Instagram username</label><input id="sIg" type="text" placeholder="e.g. anca.dumitru.photo"/>
+      <label for="sMail">Contact email</label><input id="sMail" type="text"/>
+      <label for="sAbout">About me (shown on the homepage; leave empty to hide)</label><textarea id="sAbout" rows="5"></textarea>
+      <div class="row"><button class="btn primary" id="sSave">Save details</button></div><div class="msg" id="sMsg"></div>
+    </details>
   </div>
 </aside>
 
@@ -285,6 +318,10 @@ function render() {
   const by = slug => DATA.find(c => c.slug === slug) || DATA[0];
   $('bandImg').src = thumb(by('portraits').cover || by('portraits').photos[0].url);
   $('mail').href = 'mailto:' + (DB.contact.email || CFG.contactEmail || '');
+  const ig = (DB.contact.instagram || '').replace(/^@|https?:\/\/(www\.)?instagram\.com\//g, '').replace(/\/$/, '');
+  $('ig').hidden = !ig; if (ig) $('ig').href = 'https://instagram.com/' + encodeURIComponent(ig);
+  $('about').hidden = !DB.contact.about; $('aboutTxt').textContent = DB.contact.about || '';
+  if (DB.contact.about) $('aboutImg').src = thumb(by('portugal-vibes').cover || DATA[0].cover);
 
   const SIZES = ['b','s','t','s','w','w','t','s','b','s','w','w']; // big / small / tall / wide: two blocks that fill 4 columns
   $('albumGrid').innerHTML = DATA.map((c, i) => `
@@ -336,7 +373,11 @@ function layoutAlbum() {
   $('vGrid').innerHTML = rows.map(r => {
     const s = r.reduce((n, i) => n + aspect(CUR.photos[i]), 0);
     const h = Math.min((C - gap * (r.length - 1)) / s, base * 1.8);
-    return '<div class="r">' + r.map(i => { const p = CUR.photos[i]; return img(p.url, `data-i="${i}" style="width:${Math.floor(aspect(p) * h)}px;height:${Math.floor(h)}px" alt="${esc(p.caption || '')}"`); }).join('') + '</div>';
+    return '<div class="r">' + r.map(i => {
+      const p = CUR.photos[i], w = Math.floor(aspect(p) * h), hh = Math.floor(h);
+      if (!TOKEN) return img(p.url, `data-i="${i}" style="width:${w}px;height:${hh}px" alt="${esc(p.caption || '')}"`);
+      return `<span class="ed" style="width:${w}px;height:${hh}px">${img(p.url, `data-i="${i}" alt="${esc(p.caption || '')}"`)}<span class="tools" data-i="${i}"><button data-a="cover" title="Use as album cover">★</button><button data-a="-1" title="Move earlier">‹</button><button data-a="1" title="Move later">›</button><button data-a="cap" title="Caption / place">✎</button><button data-a="del" title="Delete photo">🗑</button></span></span>`;
+    }).join('') + '</div>';
   }).join('');
   decorate();
   // photos saved without dimensions: measure once loaded, then re-flow
@@ -347,7 +388,7 @@ window.addEventListener('resize', () => { clearTimeout(layoutAlbum.t); layoutAlb
 // place whole drawings in the free space only: both side margins (top to bottom) and the strip right of the title
 function decorate() {
   const box = $('vDeco'); box.innerHTML = '';
-  const set = CUR && MOTIFS[CUR.slug]; if (!set) return;
+  const th = CUR && themeOf(CUR), set = th && MOTIFS[th]; if (!set) return;
   const V = $('view'), grid = $('vGrid').getBoundingClientRect(), vr = V.getBoundingClientRect(), st = V.scrollTop;
   const H = Math.max($('vGrid').offsetTop + $('vGrid').offsetHeight + 40, V.clientHeight); box.style.height = H + 'px';
   const left = grid.left - vr.left, right = vr.width - (grid.right - vr.left), gridTop = grid.top - vr.top + st;
@@ -356,7 +397,7 @@ function decorate() {
     `<svg viewBox="${vb.join(' ')}" width="${w}" height="${h}" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)" fill="none" stroke="#b0532e" stroke-width="${(1.8 * vb[2] / w).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`);
   let k = 0; const rnd = i => ((Math.sin(i * 99.13) * 43758.5453) % 1 + 1) % 1; // stable pseudo-random per slot
   // side columns: key drawing large at the top, then themed drawings spread evenly down to the bottom of the page
-  [[0, left, SIDE_L[CUR.slug], [-55, -55, 110, 110]], [vr.width - right, right, ART[CUR.slug], [-10, -10, 320, 420]]].forEach(([x0, w, hero, hvb]) => {
+  [[0, left, SIDE_L[th], [-55, -55, 110, 110]], [vr.width - right, right, ART[th], [-10, -10, 320, 420]]].forEach(([x0, w, hero, hvb]) => {
     if (w < 120) return;
     let y = 90;
     if (hero) { const hw = Math.min(w - 40, 220), hh = hw * hvb[3] / hvb[2]; svg(hero, x0 + (w - hw) / 2, y, hw, hh, 0, hvb); y += hh + 50; }
@@ -378,7 +419,10 @@ function openAlbum(slug, push) {
   $('vSub').textContent = c.photos.length + ' photos' + (c.description ? ' — ' + c.description : '');
   // the album's drawing, tiled across the whole page in a staggered pattern
   CUR = c;
-  $('vGrid').onclick = e => { if (e.target.dataset.i) openLb(c.photos, +e.target.dataset.i); };
+  $('vGrid').onclick = e => { const a = e.target.dataset.a; if (a) photoAction(a, +e.target.parentNode.dataset.i); else if (e.target.dataset.i) openLb(c.photos, +e.target.dataset.i); };
+  $('vShare').onclick = () => shareAlbum(c);
+  $('vAdmin').innerHTML = TOKEN ? `<input id="eName" value="${esc(c.name)}" aria-label="Album name" size="18"/><input id="eDesc" value="${esc(c.description || '')}" placeholder="Short description (optional)" aria-label="Description" size="28"/><select id="eTheme" aria-label="Drawings">${themeOptions(themeOf(c))}</select><button class="btn primary" id="eSave">Save album</button><button class="btn ghost" id="eDel">Delete album</button><span class="msg" id="eMsg"></span>` : '';
+  if (TOKEN) { $('eSave').onclick = () => edit(c.id, col => { col.name = $('eName').value.trim() || col.name; col.description = $('eDesc').value.trim(); col.theme = $('eTheme').value; }, 'Album saved.', true); $('eDel').onclick = () => deleteAlbum(c); }
   $('view').classList.add('open'); $('view').scrollTop = 0; document.body.style.overflow = 'hidden';
   layoutAlbum(); // after the page is visible, so the grid has a width
   if (push) history.pushState({}, '', '?c=' + encodeURIComponent(slug));
@@ -393,20 +437,23 @@ window.onpopstate = () => { const q = new URLSearchParams(location.search).get('
 
 // lightbox; photos that carry .album (the recent ones) get a "see the whole album" button
 function openLb(list, i) { lbList = list; lbI = i; showLb(); $('lb').classList.add('open'); }
-function showLb() { const p = lbList[lbI]; $('lbImg').src = p.url; $('lbCnt').textContent = (lbI + 1) + ' / ' + lbList.length; $('lbFrom').hidden = !p.album; if (p.album) $('lbAll').textContent = `See all of ${DATA.find(c => c.slug === p.album).name} →`; }
+function showLb() { const p = lbList[lbI]; $('lbImg').src = p.url; $('lbCap').textContent = p.caption || ''; $('lbCnt').textContent = (lbI + 1) + ' / ' + lbList.length; $('lbFrom').hidden = !p.album; if (p.album) $('lbAll').textContent = `See all of ${DATA.find(c => c.slug === p.album).name} →`; }
 $('lbAll').onclick = e => { e.preventDefault(); $('lb').classList.remove('open'); openAlbum(lbList[lbI].album, true); };
 const step = d => { lbI = (lbI + d + lbList.length) % lbList.length; showLb(); };
 $('lb').querySelector('.x').onclick = () => $('lb').classList.remove('open');
 $('lb').querySelector('.p').onclick = () => step(-1);
 $('lb').querySelector('.n').onclick = () => step(1);
 $('lb').onclick = e => { if (e.target.id === 'lb') $('lb').classList.remove('open'); };
+let touchX = null; // swipe left/right on phones
+$('lb').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+$('lb').addEventListener('touchend', e => { if (touchX === null) return; const dx = e.changedTouches[0].clientX - touchX; touchX = null; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); });
 document.addEventListener('keydown', e => {
   if ($('lb').classList.contains('open')) { if (e.key === 'Escape') $('lb').classList.remove('open'); if (e.key === 'ArrowLeft') step(-1); if (e.key === 'ArrowRight') step(1); }
   else if (e.key === 'Escape' && $('view').classList.contains('open')) closeAlbum(true);
 });
 
 /* ---------- admin: upload (GitHub logic carried over from the previous site) ---------- */
-let TOKEN = sessionStorage.getItem('pf_tok') || null, queue = [], pendingSave = false;
+let TOKEN = sessionStorage.getItem('pf_tok') || null, queue = [], pendingSave = false, newAlbum = null;
 const slugify = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').replace(/-{2,}/g,'-').replace(/^-|-$/g,'');
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 const enc = p => p.split('/').map(encodeURIComponent).join('/');
@@ -446,6 +493,65 @@ function resizeImage(file, maxPx = 2048, quality = 0.88) {
   });
 }
 
+// ---------- admin: edit albums and photos ----------
+const THEMES = { paris: 'Paris', 'portugal-vibes': 'Portugal', autumn: 'Autumn', 'spring-blooming': 'Spring', 'spring-blossom': 'Blossom', 'the-muse-got-lost-in-the-museum': 'Museum', 'chinese-new-year-paris-parade': 'Chinese New Year', portraits: 'Portraits', seaside: 'Seaside', 'castles-fairy-tales': 'Castles', 'so-christmasy': 'Christmas', fashion: 'Fashion' };
+const themeOf = c => c.theme !== undefined ? c.theme : c.slug;
+const themeOptions = sel => `<option value="">No drawings</option>` + Object.entries(THEMES).map(([k, v]) => `<option value="${k}"${k === sel ? ' selected' : ''}>Drawings: ${v}</option>`).join('');
+async function rmFile(path, msg) { const sha = await getSHA(path); if (sha) await ghAPI(path, 'DELETE', { message: msg, sha, branch: CFG.branch }); }
+const thumbPath = p => 'thumbs/' + p.path.slice('photos/'.length).replace(/\.[^.]+$/, '.jpg');
+const status = (t, err) => { const m = $('eMsg'); if (m) { m.className = err ? 'msg err' : 'msg'; m.textContent = t; } else if (err) alert(t); };
+// every edit starts from the latest saved data, so it never overwrites a change made elsewhere
+async function edit(cid, fn, done = 'Saved.', page = false) {
+  status('Saving…');
+  try {
+    DB = await freshDB();
+    const col = DB.collections.find(c => c.id === cid); if (!col) throw new Error('This album no longer exists. Reload the page.');
+    await fn(col); await saveDB();
+    if (page && col.photos.length) writeAlbumPage(col);
+    render();
+    DB.collections.includes(col) && col.photos.length ? openAlbum(col.slug, false) : closeAlbum(true);
+    status(done);
+  } catch (e) { status(e.message, true); }
+}
+function photoAction(a, i) {
+  const p = CUR.photos[i], id = p.id, cid = CUR.id;
+  if (a === 'cover') return edit(cid, col => { col.cover = col.photos.find(x => x.id === id).url; }, 'Cover updated.', true);
+  if (a === 'cap') { const v = prompt('Caption or place for this photo (e.g. "Versailles, 2025"):', p.caption || ''); if (v === null) return; return edit(cid, col => { col.photos.find(x => x.id === id).caption = v.trim(); }, 'Caption saved.'); }
+  if (a === 'del') { if (!confirm('Delete this photo permanently?')) return;
+    return edit(cid, async col => { const ph = col.photos.find(x => x.id === id); if (!ph) return; await rmFile(ph.path, `Delete photo from ${col.name}`); await rmFile(thumbPath(ph), 'Delete thumbnail').catch(() => {}); col.photos = col.photos.filter(x => x.id !== id); if (col.cover === ph.url) col.cover = col.photos[0]?.url || null; }, 'Photo deleted.', true); }
+  const d = +a; // move earlier / later
+  return edit(cid, col => { const j = col.photos.findIndex(x => x.id === id), k = j + d; if (j < 0 || k < 0 || k >= col.photos.length) return; [col.photos[j], col.photos[k]] = [col.photos[k], col.photos[j]]; }, 'Order saved.');
+}
+async function deleteAlbum(c) {
+  if (prompt(`This deletes "${c.name}" and all ${c.photos.length} photos permanently.\nType DELETE to confirm:`) !== 'DELETE') return;
+  await edit(c.id, async col => {
+    for (const ph of col.photos) { status(`Deleting photos… ${col.photos.indexOf(ph) + 1}/${col.photos.length}`); await rmFile(ph.path, `Delete album ${col.name}`); await rmFile(thumbPath(ph), 'Delete thumbnail').catch(() => {}); }
+    await rmFile(`album/${col.slug}.html`, 'Delete album page').catch(() => {});
+    DB.collections = DB.collections.filter(x => x.id !== col.id); col.photos = [];
+  }, 'Album deleted.');
+}
+
+// ---------- share pages: album/<slug>.html carries the album's own link preview, then forwards to the album ----------
+function albumPage(c) {
+  const t = `${c.name} — Anca Dumitru Photography`, go = '/?c=' + encodeURIComponent(c.slug);
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>${esc(t)}</title><meta name="description" content="${esc(c.description || `${c.photos.length} photos by Anca Dumitru`)}"/><meta property="og:title" content="${esc(t)}"/><meta property="og:description" content="${esc(c.description || `${c.photos.length} photos`)}"/><meta property="og:image" content="${esc(c.cover || c.photos[0].url)}"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="/favicon.svg"/><meta http-equiv="refresh" content="0;url=${go}"/></head><body><a href="${go}">${esc(c.name)}</a></body></html>`;
+}
+const writeAlbumPage = c => upsert(`album/${c.slug}.html`, btoa(unescape(encodeURIComponent(albumPage(c)))), `Share page for ${c.name}`).catch(() => {});
+async function shareAlbum(c) {
+  const url = `${location.origin}/album/${c.slug}`;
+  if (navigator.share) { try { await navigator.share({ title: c.name, url }); return; } catch { return; } }
+  try { await navigator.clipboard.writeText(url); $('vShare').textContent = 'Link copied ✓'; } catch { prompt('Copy this link:', url); }
+  setTimeout(() => { $('vShare').textContent = 'Share album ↗'; }, 2500);
+}
+
+// ---------- site details ----------
+$('sSave').onclick = async () => {
+  $('sMsg').className = 'msg'; $('sMsg').textContent = 'Saving…';
+  try { DB = await freshDB(); Object.assign(DB.contact, { instagram: $('sIg').value.trim(), email: $('sMail').value.trim(), about: $('sAbout').value.trim() }); await saveDB(); render(); $('sMsg').textContent = 'Saved.'; }
+  catch (e) { $('sMsg').className = 'msg err'; $('sMsg').textContent = e.message; }
+};
+const setAdmin = on => { $('upBtn').hidden = !on; if (CUR) openAlbum(CUR.slug, false); };
+
 function openSheet() { $('sheet').classList.add('open'); TOKEN ? showUpload() : ($('loginView').hidden = false, $('upView').hidden = true); }
 $('adminLink').onclick = openSheet;
 $('upBtn').onclick = openSheet;
@@ -461,18 +567,20 @@ $('loginBtn').onclick = async () => {
     if (r.status === 404) throw new Error('This token can’t see the site repository.');
     if (!r.ok) throw new Error(`GitHub error ${r.status}.`);
     if (!(await r.json()).permissions?.push) throw new Error('This token can read but not upload. It needs write access to the repository.');
-    TOKEN = t; sessionStorage.setItem('pf_tok', t); $('tok').value = ''; $('upBtn').hidden = false; showUpload();
+    TOKEN = t; sessionStorage.setItem('pf_tok', t); $('tok').value = ''; setAdmin(true); showUpload();
   } catch (e) { $('tokErr').textContent = e.message; }
   $('loginBtn').disabled = false; $('loginBtn').textContent = 'Connect';
 };
-$('logout').onclick = () => { TOKEN = null; sessionStorage.removeItem('pf_tok'); $('upBtn').hidden = true; $('sheet').classList.remove('open'); };
+$('logout').onclick = () => { TOKEN = null; sessionStorage.removeItem('pf_tok'); setAdmin(false); $('sheet').classList.remove('open'); };
 
 function showUpload() {
+  $('sIg').value = DB.contact.instagram || ''; $('sMail').value = DB.contact.email || CFG.contactEmail || ''; $('sAbout').value = DB.contact.about || '';
+  $('newTheme').innerHTML = themeOptions('');
   $('loginView').hidden = true; $('upView').hidden = false;
   $('albSel').innerHTML = DB.collections.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('') + '<option value="__new">＋ New album…</option>';
-  $('newAlb').hidden = $('albSel').value !== '__new';
+  $('newAlb').hidden = $('newTheme').hidden = $('albSel').value !== '__new';
 }
-$('albSel').onchange = () => { $('newAlb').hidden = $('albSel').value !== '__new'; if (!$('newAlb').hidden) $('newAlb').focus(); };
+$('albSel').onchange = () => { $('newAlb').hidden = $('newTheme').hidden = $('albSel').value !== '__new'; if (!$('newAlb').hidden) $('newAlb').focus(); };
 
 function addFiles(list) { for (const f of list) if (f.type.startsWith('image/')) queue.push({ file: f, pre: URL.createObjectURL(f) }); drawQueue(); }
 function drawQueue() { $('queue').innerHTML = queue.map(q => `<div class="${q.state || ''}"><img src="${q.pre}" alt=""/></div>`).join(''); }
@@ -493,7 +601,7 @@ $('doUp').onclick = async () => {
         const name = $('newAlb').value.trim(); let slug = slugify(name);
         if (!slug) throw new Error('Give the new album a name (letters or numbers).');
         for (let n = 2; DB.collections.some(c => c.slug === slug); n++) slug = `${slugify(name)}-${n}`;
-        col = { id: uid(), name, slug, cover: null, description: '', photos: [] };
+        col = { id: uid(), name, slug, cover: null, description: '', theme: $('newTheme').value, photos: [] }; newAlbum = col;
         DB.collections.unshift(col); // newest album first
       } else {
         col = DB.collections.find(c => c.id === $('albSel').value);
@@ -520,6 +628,7 @@ $('doUp').onclick = async () => {
     }
     await saveDB(); // photo files are already in GitHub; this adds them to the album list
     pendingSave = false;
+    if (newAlbum) { writeAlbumPage(newAlbum); newAlbum = null; }
     const n = queue.filter(q => q.state === 'ok').length, failed = queue.length - n;
     queue.forEach(q => URL.revokeObjectURL(q.pre)); queue = queue.filter(q => q.state === 'fail'); drawQueue();
     render(); showUpload();
