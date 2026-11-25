@@ -301,16 +301,28 @@ function render() {
 // album page: justified rows (each row fills the width, photos keep their shape), row heights vary for rhythm
 let CUR = null;
 const aspect = p => p.w && p.h ? p.w / p.h : (p._a || 2 / 3);
+// split photos (in order) into rows so every row's height stays close to the ideal height:
+// checks every possible split (n is small) and keeps the one with the least total deviation
+function splitRows(asp, C, base, gap) {
+  const n = asp.length, best = [0], cut = [0];
+  for (let j = 1; j <= n; j++) {
+    best[j] = Infinity;
+    for (let i = j - 1, sum = 0; i >= 0; i--) {
+      sum += asp[i];
+      const h = (C - gap * (j - i - 1)) / sum;
+      if (h < base * .55) break; // row would be too thin: more photos only make it thinner
+      const cost = best[i] + ((h - base) / base) ** 2;
+      if (cost < best[j]) { best[j] = cost; cut[j] = i; }
+    }
+  }
+  const rows = [];
+  for (let j = n; j > 0; j = cut[j]) rows.unshift([...Array(j - cut[j]).keys()].map(k => cut[j] + k));
+  return rows;
+}
 function layoutAlbum() {
   if (!CUR) return;
-  const C = $('vGrid').clientWidth, gap = 12, base = Math.max(200, Math.min(400, C * .32)), rhythm = [1, .78, .92];
-  const rows = []; let row = [], sum = 0;
-  CUR.photos.forEach((p, i) => {
-    row.push(i); sum += aspect(p);
-    if (sum * base * rhythm[rows.length % 3] + gap * (row.length - 1) >= C) { rows.push(row); row = []; sum = 0; }
-  });
-  // a short leftover row would look orphaned: fold it into the row above so the album ends evenly
-  if (row.length) (rows.length && (C - gap * (row.length - 1)) / sum > base * 1.3) ? rows[rows.length - 1].push(...row) : rows.push(row);
+  const C = $('vGrid').clientWidth, gap = 12, base = Math.max(200, Math.min(360, C * .3));
+  const rows = splitRows(CUR.photos.map(aspect), C, base, gap);
   $('vGrid').innerHTML = rows.map(r => {
     const s = r.reduce((n, i) => n + aspect(CUR.photos[i]), 0);
     const h = Math.min((C - gap * (r.length - 1)) / s, base * 1.8);
