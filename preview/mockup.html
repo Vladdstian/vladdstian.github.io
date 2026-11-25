@@ -56,6 +56,7 @@ section.block{padding:90px 0 0}
 .head.row{display:flex;justify-content:space-between;align-items:end;text-align:left}
 .more{font-weight:500;font-size:14px;display:flex;gap:8px;align-items:center}
 .albums{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:340px;grid-auto-flow:dense;gap:22px}
+.albums.even{grid-auto-rows:auto}.albums.even .album .im{flex:none;aspect-ratio:4/5}
 .album.b{grid-column:span 2;grid-row:span 2}.album.t{grid-row:span 2}.album.w{grid-column:span 2}
 .album{display:flex;flex-direction:column;min-height:0;background:var(--card);border-radius:24px;padding:10px 10px 16px;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 14px 34px -28px rgba(60,30,10,.5)}
 .album:hover{transform:translateY(-6px);box-shadow:0 26px 44px -26px rgba(60,30,10,.55)}
@@ -188,13 +189,16 @@ footer .copy{color:var(--muted);font-size:12px}
 
 <div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="cnt" id="lbCnt"></div><a class="all" id="lbAll" href="#">See the whole album →</a></div>
 
-<div class="switch"><a href="styles.html#a">A · Gallery</a><a href="styles.html#b">B · Minimal</a><a href="styles.html#c">C · Dark</a><a class="on" href="mockup.html">D · Warm</a></div>
+<div class="switch"><a href="styles.html#a">A · Gallery</a><a href="styles.html#b">B · Minimal</a><a href="styles.html#c">C · Dark</a><a id="swD" href="mockup.html">D · Warm</a><a id="swE" href="mockup.html?even">E · Warm even</a></div>
 <script>
 // Mockup: reads the live album data straight from the GitHub repo, read-only.
 const RAW = 'https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/';
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DATA, lbList = [], lbI = 0, lbAlbum = null;
+const EVEN = new URLSearchParams(location.search).has('even'); // option E: all albums the same size
+$(EVEN ? 'swE' : 'swD').classList.add('on');
+if (EVEN) $('albumGrid').classList.add('even');
 
 Promise.all([fetch(RAW + '_data.json').then(r => r.json()), fetch(RAW + 'settings.json').then(r => r.json())]).then(([d, s]) => {
   DATA = d.collections.filter(c => c.photos.length);
@@ -205,7 +209,7 @@ Promise.all([fetch(RAW + '_data.json').then(r => r.json()), fetch(RAW + 'setting
 
   const SIZES = ['b','s','t','s','w','w','t','s','b','s','w','w']; // big / small / tall / wide
   $('albumGrid').innerHTML = DATA.map((c, i) => `
-    <a class="album ${SIZES[i % 12]}" data-slug="${esc(c.slug)}">
+    <a class="album ${EVEN ? '' : SIZES[i % 12]}" data-slug="${esc(c.slug)}">
       <div class="im"><img loading="lazy" src="${esc(c.cover || c.photos[0].url)}" alt="${esc(c.name)}"/></div>
       <div class="meta"><div><h3>${esc(c.name)}</h3><small>${c.photos.length} photos</small></div><span class="round">→</span></div>
     </a>`).join('');
@@ -227,11 +231,11 @@ function openAlbum(slug, push) {
   $('vGrid').innerHTML = c.photos.map((p, i) => `<img loading="lazy" src="${esc(p.url)}" data-i="${i}" ${p.w ? `width="${p.w}" height="${p.h}"` : ''} style="height:auto" alt="${esc(p.caption || '')}"/>`).join('');
   $('vGrid').onclick = e => { if (e.target.dataset.i) openLb(c.photos, +e.target.dataset.i); };
   $('view').classList.add('open'); $('view').scrollTop = 0; document.body.style.overflow = 'hidden';
-  if (push) history.pushState({}, '', '?c=' + encodeURIComponent(slug));
+  if (push) history.pushState({}, '', '?c=' + encodeURIComponent(slug) + (EVEN ? '&even' : ''));
 }
 function closeAlbum(push) {
   $('view').classList.remove('open'); document.body.style.overflow = '';
-  if (push) history.pushState({}, '', location.pathname);
+  if (push) history.pushState({}, '', location.pathname + (EVEN ? '?even' : ''));
 }
 $('back').onclick = () => closeAlbum(true);
 window.onpopstate = () => { const q = new URLSearchParams(location.search).get('c'); q ? openAlbum(q, false) : closeAlbum(false); };
