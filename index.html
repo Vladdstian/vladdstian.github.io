@@ -128,7 +128,7 @@ footer .copy{color:var(--muted);font-size:12px}
 }
 @media (max-width:520px){.wrap{padding:0 18px}.album h3{font-size:17px}.album .meta{padding:9px 12px;left:8px;right:8px;bottom:8px}.round{display:none}}
 /* highlights: one random photo per album, sideways scroll */
-.strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .strip img{flex:none;height:340px;border-radius:10px;object-fit:cover;cursor:zoom-in;scroll-snap-align:start;background:#e6dcd3;transition:transform .3s}
 .strip img:hover{transform:translateY(-4px)}
 @media (max-width:960px){.strip img{height:240px}}
@@ -217,13 +217,13 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
 
 <div class="wrap">
   <section class="block" style="padding-top:30px">
-    <div class="head"><div class="eyebrow c acc">Recent works</div></div>
-    <div class="recent" id="recent"></div>
+    <div class="head"><div class="eyebrow c acc">Highlights</div></div>
+    <div class="strip" id="highlights"></div>
   </section>
 
   <section class="block">
-    <div class="head"><div class="eyebrow c acc">Highlights</div></div>
-    <div class="strip" id="highlights"></div>
+    <div class="head"><div class="eyebrow c acc">Recent works</div></div>
+    <div class="recent" id="recent"></div>
   </section>
 
   <section class="block" id="albums">
@@ -367,6 +367,7 @@ function render() {
   const hH = innerWidth > 960 ? 340 : 240;
   $('highlights').innerHTML = hl.map((p, i) => img(p.url, `data-i="${i}" style="width:${Math.round((p.w && p.h ? p.w / p.h : 2 / 3) * hH)}px" alt="${esc(p.caption || '')}"`)).join('');
   $('highlights').onclick = e => { if (e.target.dataset.i) openLb(hl, +e.target.dataset.i); };
+  autoplay($('highlights'));
 }
 
 // album page: justified rows (each row fills the width, photos keep their shape), row heights vary for rhythm
@@ -408,6 +409,23 @@ function layoutAlbum() {
 }
 window.addEventListener('resize', () => { clearTimeout(layoutAlbum.t); layoutAlbum.t = setTimeout(layoutAlbum, 120); });
 
+
+// highlights move on their own: one photo every 3.5s, back to the start at the end;
+// pauses while hovered/touched or while the page is hidden, and is off for people who prefer reduced motion
+function autoplay(strip) {
+  clearInterval(autoplay.t);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let paused = false;
+  strip.onmouseenter = () => paused = true; strip.onmouseleave = () => paused = false;
+  strip.ontouchstart = () => { paused = true; clearTimeout(autoplay.r); autoplay.r = setTimeout(() => paused = false, 6000); };
+  autoplay.t = setInterval(() => {
+    if (paused || document.hidden || $('lb').classList.contains('open') || $('view').classList.contains('open')) return;
+    const atEnd = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4;
+    if (atEnd) return strip.scrollTo({ left: 0 });
+    const next = [...strip.children].find(el => el.offsetLeft - strip.offsetLeft > strip.scrollLeft + 4);
+    if (next) strip.scrollTo({ left: next.offsetLeft - strip.offsetLeft });
+  }, 3500);
+}
 
 function openAlbum(slug, push) {
   const c = DATA.find(x => x.slug === slug); if (!c) return;
