@@ -117,7 +117,7 @@ footer .copy{color:var(--muted);font-size:12px}
   .head h2,.band h2{font-size:36px}
 }
 @media (max-width:520px){.wrap{padding:0 18px}.album h3{font-size:13px}.round{display:none}}
-.switch{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:99;display:flex;gap:6px;background:#fff;padding:6px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 13px Inter,sans-serif}
+.switch{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:99;display:flex;max-width:96vw;overflow-x:auto;white-space:nowrap;gap:6px;background:#fff;padding:6px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 13px Inter,sans-serif}
 .switch a{padding:10px 18px;border-radius:999px;color:#222}
 .switch a.on{background:#222;color:#fff}
 </style>
@@ -189,7 +189,7 @@ footer .copy{color:var(--muted);font-size:12px}
 
 <div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="cnt" id="lbCnt"></div><a class="all" id="lbAll" href="#">See the whole album →</a></div>
 
-<div class="switch"><a href="styles.html#a">A · Gallery</a><a href="styles.html#b">B · Minimal</a><a href="styles.html#c">C · Dark</a><a id="swD" href="mockup.html">D · Warm</a><a id="swE" href="mockup.html?even">E · Warm even</a></div>
+<div class="switch"><a href="styles.html#a">A · Gallery</a><a href="styles.html#b">B · Minimal</a><a href="styles.html#c">C · Dark</a><a id="swD" href="mockup.html">D · Warm</a><a id="swE" href="mockup.html?even">E · Warm even</a><a href="styles.html#f">F · Story</a><a href="styles.html#g">G · Filmstrip</a><a href="styles.html#h">H · Journal</a></div>
 <script>
 // Mockup: reads the live album data straight from the GitHub repo, read-only.
 const RAW = 'https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/';

@@ -64,11 +64,50 @@ body.c{background:#0f0f0f;color:#eee}
 .c .card small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
 .c .card .im::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.6))}
 
+
+/* F — Story: one album per row, big photo + title, alternating sides (McCurry-like travel storytelling) */
+body.f{background:#fff;color:#151515}
+.f .intro{display:block;max-width:1200px;margin:0 auto;padding:60px 48px 80px}
+.f .intro h1{font:400 72px/1 "Cormorant Garamond",serif;margin:0 0 14px}
+.f .intro p{margin:0;color:#777;letter-spacing:.2em;text-transform:uppercase;font-size:12px}
+.f .grid{grid-template-columns:1fr;gap:110px;max-width:1200px;margin:0 auto}
+.f .card{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:center}
+.f .card:nth-child(even) .im{order:2}
+.f .card .im{aspect-ratio:4/3}
+.f .card h3{font:400 52px/1.05 "Cormorant Garamond",serif;margin-bottom:12px}
+.f .card small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#888}
+.f .card .t::after{content:"View the story →";display:block;margin-top:28px;font-size:14px;border-bottom:1px solid #151515;width:max-content;padding-bottom:4px}
+
+/* G — Filmstrip: tall photos in one sideways-scrolling row (fashion / fine-art sites) */
+body.g{background:#ebe7e1;color:#1c1c1c}
+.g .top{justify-content:center;flex-direction:column;gap:14px;padding-top:40px}
+.g .intro{display:block;text-align:center;padding:10px 0 36px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#888}
+.g .intro h1{display:none}
+.g .grid{display:flex;overflow-x:auto;gap:18px;padding:0 48px 30px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.g .grid{scroll-padding-left:48px}
+.g .card{flex:0 0 calc(64vh * .75);scroll-snap-align:start}
+.g .card .im{height:64vh}
+.g .card h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:14px;font-weight:500}
+.g .card small{font-size:11px;color:#888}
+
+/* H — Journal: every photo on one wall, filter by album (Kordan categories + travel-journal feel) */
+body.h{background:#f8f5ef;color:#24291f}
+.h .intro{display:block;max-width:1300px;margin:0 auto;padding:50px 48px 30px}
+.h .intro h1{font:italic 400 64px/1.05 "Cormorant Garamond",serif;margin:0 0 12px;max-width:820px}
+.h .intro p{margin:0;color:#6f7466}
+.h .grid{display:none}
+.chips,.wall{display:none}
+.h .chips{display:flex;flex-wrap:wrap;gap:8px;max-width:1300px;margin:0 auto;padding:10px 48px 30px}
+.chips button{border:1px solid #c9c7bb;background:none;border-radius:999px;padding:8px 16px;font:13px Inter,sans-serif;color:#24291f;cursor:pointer}
+.chips button.on,.chips button:hover{background:#3d4a3a;border-color:#3d4a3a;color:#fff}
+.h .wall{display:block;columns:4 240px;column-gap:14px;max-width:1300px;margin:0 auto;padding:0 48px 80px}
+.wall img{height:auto;margin:0 0 14px;break-inside:avoid;border-radius:4px}
+
 /* style switcher (preview only) */
-.switch{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:99;display:flex;gap:6px;background:#fff;padding:6px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 13px Inter,sans-serif}
+.switch{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:99;display:flex;max-width:96vw;overflow-x:auto;white-space:nowrap;gap:6px;background:#fff;padding:6px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 13px Inter,sans-serif}
 .switch button{border:0;background:none;padding:10px 18px;border-radius:999px;cursor:pointer;color:#222;font:inherit}
 .switch button.on{background:#222;color:#fff}
-@media (max-width:800px){.top{padding:20px}.top nav{gap:16px;font-size:11px}.grid{padding-left:16px;padding-right:16px}.a .grid,.b .grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}.c .grid{grid-template-columns:1fr}.c .feature .cap{left:20px}.c .feature .cap h1{font-size:48px}.b .intro h1,.a .intro h1{font-size:40px}}
+@media (max-width:800px){.f .card{grid-template-columns:1fr;gap:20px}.f .card:nth-child(even) .im{order:0}.f .card h3{font-size:36px}.h .wall{padding:0 16px 80px}.h .chips{padding:10px 16px 24px}.h .intro h1,.f .intro h1{font-size:40px}.top{padding:20px}.top nav{gap:16px;font-size:11px}.grid{padding-left:16px;padding-right:16px}.a .grid,.b .grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}.c .grid{grid-template-columns:1fr}.c .feature .cap{left:20px}.c .feature .cap h1{font-size:48px}.b .intro h1,.a .intro h1{font-size:40px}}
 </style>
 </head>
 <body class="a">
@@ -76,8 +115,9 @@ body.c{background:#0f0f0f;color:#eee}
 <section class="feature"><img id="feat" alt=""/><div class="cap"><span>Latest album</span><h1 id="featTitle"></h1></div></section>
 <div class="intro"><h1>Anca's Photography</h1><p>Travel · Portraits · Everyday places</p></div>
 <main class="grid" id="grid"></main>
+<div class="chips" id="chips"></div><div class="wall" id="wall"></div>
 <footer>© 2026 Anca Photography</footer>
-<div class="switch"><button data-s="a" class="on">A · Gallery</button><button data-s="b">B · Minimal</button><button data-s="c">C · Dark</button><button onclick="location.href='mockup.html'">D · Warm</button><button onclick="location.href='mockup.html?even'">E · Warm even</button></div>
+<div class="switch"><button data-s="a" class="on">A · Gallery</button><button data-s="b">B · Minimal</button><button data-s="c">C · Dark</button><button onclick="location.href='mockup.html'">D · Warm</button><button onclick="location.href='mockup.html?even'">E · Warm even</button><button data-s="f">F · Story</button><button data-s="g">G · Filmstrip</button><button data-s="h">H · Journal</button></div>
 <script>
 // Style preview: same live album data, three looks. Read-only.
 const RAW = 'https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/';
@@ -90,10 +130,20 @@ fetch(RAW + '_data.json').then(r => r.json()).then(d => {
   const f = albums[0];
   document.getElementById('feat').src = f.photos[3] ? f.photos[3].url : f.cover;
   document.getElementById('featTitle').textContent = f.name;
+  // H: one wall of every photo, filterable by album
+  const all = albums.flatMap(c => c.photos.map(p => ({ ...p, album: c.slug })));
+  const wall = document.getElementById('wall'), chips = document.getElementById('chips');
+  const show = slug => {
+    wall.innerHTML = all.filter(p => !slug || p.album === slug).map(p => `<img loading="lazy" src="${esc(p.url)}" ${p.w ? `width="${p.w}" height="${p.h}"` : ''} alt=""/>`).join('');
+    chips.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.a === (slug || '')));
+  };
+  chips.innerHTML = `<button data-a="">All · ${all.length}</button>` + albums.map(c => `<button data-a="${esc(c.slug)}">${esc(c.name)}</button>`).join('');
+  chips.onclick = e => { if (e.target.dataset.a !== undefined) show(e.target.dataset.a); };
+  show('');
 });
 const pick = s => { document.body.className = s; document.querySelectorAll('.switch button').forEach(b => b.classList.toggle('on', b.dataset.s === s)); history.replaceState(null, '', '#' + s); };
 document.querySelectorAll('.switch button[data-s]').forEach(b => b.onclick = () => pick(b.dataset.s));
-if (['a','b','c'].includes(location.hash.slice(1))) pick(location.hash.slice(1));
+if (['a','b','c','f','g','h'].includes(location.hash.slice(1))) pick(location.hash.slice(1));
 </script>
 </body>
 </html>
