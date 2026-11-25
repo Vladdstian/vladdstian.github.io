@@ -250,11 +250,15 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
   <button class="x" id="sheetX" aria-label="Close">✕</button>
   <div id="loginView">
     <h3>Admin</h3>
-    <p class="hint">Paste your GitHub token to upload photos. It's kept only in this browser tab and forgotten when you close it.</p>
+    <p class="hint">Log in to upload and edit photos. We'll email you a one-time code.</p>
+    <div class="row"><a class="btn primary" href="/api/login">Log in with email code</a></div>
+    <details><summary>Use a GitHub token instead</summary>
+    <p class="hint">The token is kept only in this browser tab and forgotten when you close it.</p>
     <label for="tok">GitHub token</label>
     <input id="tok" type="password" autocomplete="off" placeholder="github_pat_… or ghp_…"/>
     <div class="row"><button class="btn primary" id="loginBtn">Connect</button></div>
     <div class="msg err" id="tokErr"></div>
+    </details>
   </div>
   <div id="upView" hidden>
     <h3>Upload photos</h3>
@@ -308,8 +312,14 @@ console.assert(idTime('mvl8meaksbz3') > 1.7e12, 'idTime decodes upload time');
   render();
   const q = new URLSearchParams(location.search);
   if (q.get('c')) openAlbum(q.get('c'), false); // keeps old ?c=slug share links working
-  if (q.has('admin')) openSheet();
-  if (sessionStorage.getItem('pf_tok')) $('upBtn').hidden = false;
+  // back from the email-code login (or an earlier one this tab): ask /api who is logged in
+  if (q.has('admin') || TOKEN === 'cf') {
+    const me = await fetch('/api/me', { redirect: 'manual', cache: 'no-store' }).catch(() => null);
+    if (me && me.ok) { TOKEN = 'cf'; sessionStorage.setItem('pf_tok', 'cf'); }
+    else if (TOKEN === 'cf') { TOKEN = null; sessionStorage.removeItem('pf_tok'); }
+    if (q.has('admin')) { history.replaceState(null, '', location.pathname + (q.get('c') ? '?c=' + q.get('c') : '')); openSheet(); }
+  }
+  if (TOKEN) setAdmin(true);
 })();
 
 function render() {
@@ -460,8 +470,9 @@ const enc = p => p.split('/').map(encodeURIComponent).join('/');
 const b64json = o => btoa(unescape(encodeURIComponent(JSON.stringify(o, null, 2))));
 
 async function ghAPI(path, method = 'GET', body = null) {
-  const h = { Accept: 'application/vnd.github+json', 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN}` };
-  const r = await fetch(`${apiBase()}/contents/${enc(path)}${method === 'GET' ? '?ref=' + encodeURIComponent(CFG.branch) : ''}`, { method, headers: h, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' });
+  // email-code login (TOKEN === 'cf'): requests go through the site's own /api, which holds the GitHub token
+  const cf = TOKEN === 'cf', h = { Accept: 'application/vnd.github+json', 'Content-Type': 'application/json', ...(cf ? {} : { Authorization: `Bearer ${TOKEN}` }) };
+  const r = await fetch(`${cf ? '/api' : apiBase()}/contents/${enc(path)}${method === 'GET' ? '?ref=' + encodeURIComponent(CFG.branch) : ''}`, { method, headers: h, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' });
   if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `GitHub ${r.status}`); }
   return r.json();
 }
