@@ -43,10 +43,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 .links a:not(.on):hover{background:var(--soft)}
 
 /* about */
-.about{background:var(--card);border-radius:30px;padding:28px;display:grid;grid-template-columns:270px 1fr 290px;gap:40px;align-items:center;box-shadow:0 20px 50px -35px rgba(60,30,10,.35);position:relative}
+.about{background:var(--card);border-radius:18px;padding:28px;display:grid;grid-template-columns:270px 1fr 290px;gap:40px;align-items:center;box-shadow:0 20px 50px -35px rgba(60,30,10,.35);position:relative}
 .about .ph{position:relative}
 .about .ph::before{content:"";position:absolute;left:-18px;top:24px;width:60px;height:60px;border-radius:50%;background:var(--acc)}
-.about .ph img{position:relative;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px}
+.about .ph img{position:relative;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px}
 .about h2{font-size:42px;margin:10px 0 14px;line-height:1.05}
 .about p{color:var(--muted);margin:0 0 22px;max-width:440px}
 .feats{border-left:1px solid var(--line);padding-left:36px;display:grid;gap:22px}
@@ -64,20 +64,20 @@ section.block{padding:90px 0 0}
 .more{font-weight:500;font-size:14px;display:flex;gap:8px;align-items:center}
 .albums{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:340px;grid-auto-flow:dense;gap:22px}
 .album.b{grid-column:span 2;grid-row:span 2}.album.t{grid-row:span 2}.album.w{grid-column:span 2}
-.album{position:relative;display:block;min-height:0;background:#e6dcd3;border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 14px 34px -28px rgba(60,30,10,.5)}
+.album{position:relative;display:block;min-height:0;background:#e6dcd3;border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 14px 34px -28px rgba(60,30,10,.5)}
 .album:hover{transform:translateY(-6px);box-shadow:0 26px 44px -26px rgba(60,30,10,.55)}
 .album .im{position:absolute;inset:0}
 .album .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .album:hover .im img{transform:scale(1.05)}
 .album .im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,12,.45))}
-.album .meta{position:absolute;left:14px;right:14px;bottom:14px;padding:12px 18px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:flex;flex-direction:column;gap:4px}
+.album .meta{position:absolute;left:14px;right:14px;bottom:14px;padding:12px 18px;border-radius:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:flex;flex-direction:column;gap:4px}
 .album h3{margin:0;font:400 20px/1.15 "DM Serif Display",Georgia,serif;letter-spacing:.01em;text-shadow:0 1px 12px rgba(0,0,0,.25)}
 .album small{flex:none;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
 .recent{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.recent img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;cursor:zoom-in;background:#e6dcd3}
+.recent img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;cursor:zoom-in;background:#e6dcd3}
 
 /* cta */
-.band{margin:100px 0 0;background:#221d1a;color:#fff;border-radius:30px;overflow:hidden;display:grid;grid-template-columns:1fr;align-items:center;grid-template-rows:520px;height:520px;position:relative}
+.band{margin:100px 0 0;background:#221d1a;color:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr;align-items:center;grid-template-rows:520px;height:520px;position:relative}
 .band img{position:absolute;right:0;top:0;width:50%;height:100%;object-fit:cover;object-position:62% 30%;filter:grayscale(1) contrast(1.05);opacity:.85;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
 .band .tx{position:relative;z-index:1}
 .band .tx{padding:40px 56px}
@@ -97,12 +97,12 @@ footer .copy{color:var(--muted);font-size:12px}
 
 .rows{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
 .rows .r{display:flex;gap:12px;justify-content:center}
-.rows img{display:block;flex:none;border-radius:12px;object-fit:cover;cursor:zoom-in;background:#e6dcd3}
+.rows img{display:block;flex:none;border-radius:8px;object-fit:cover;cursor:zoom-in;background:#e6dcd3}
 
 /* lightbox */
 #lb{position:fixed;inset:0;background:rgba(22,18,16,.96);z-index:60;display:none;align-items:center;justify-content:center}
 #lb.open{display:flex}
-#lb img{max-width:90vw;max-height:80vh;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lb img{max-width:90vw;max-height:80vh;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 #lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:0;width:52px;height:52px;border-radius:50%;font-size:22px;cursor:pointer}
 #lb button:hover{background:var(--acc)}
 #lb .x{top:22px;right:22px}
@@ -129,11 +129,11 @@ footer .copy{color:var(--muted);font-size:12px}
 @media (max-width:520px){.wrap{padding:0 18px}.album h3{font-size:17px}.album .meta{padding:9px 12px;left:8px;right:8px;bottom:8px}.round{display:none}}
 /* highlights: one random photo per album, sideways scroll */
 .strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-.strip img{flex:none;height:340px;border-radius:16px;object-fit:cover;cursor:zoom-in;scroll-snap-align:start;background:#e6dcd3;transition:transform .3s}
+.strip img{flex:none;height:340px;border-radius:10px;object-fit:cover;cursor:zoom-in;scroll-snap-align:start;background:#e6dcd3;transition:transform .3s}
 .strip img:hover{transform:translateY(-4px)}
 @media (max-width:960px){.strip img{height:240px}}
 /* album page: the cover photo opens the album, title set over it */
-.vcover{position:relative;height:min(72vh,720px);min-height:380px;width:calc(100% - 64px);max-width:1136px;margin:0 auto;border-radius:6px;overflow:hidden;background:#2a2420}
+.vcover{position:relative;height:min(72vh,720px);min-height:380px;width:calc(100% - 64px);max-width:1136px;margin:0 auto;border-radius:4px;overflow:hidden;background:#2a2420}
 .vcover img{width:100%;height:100%;object-fit:cover;display:block}
 .vcover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(18,14,12,.72))}
 .vcover .cap{position:absolute;left:56px;right:56px;bottom:44px;z-index:1;color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -147,11 +147,11 @@ button{color:inherit}
   #view .top .wrap{padding-top:10px;padding-bottom:10px}
   #view .top .btn{padding:8px 14px;font-size:13px}
   #view .top .logo{font-size:17px!important}#view .top .logo svg{width:28px;height:28px}
-  .vcover{width:calc(100% - 24px);height:58vh;min-height:320px;border-radius:4px}
+  .vcover{width:calc(100% - 24px);height:58vh;min-height:320px;border-radius:3px}
   .vcover .cap{left:20px;right:20px;bottom:22px}
   .vcover .share{padding:8px 14px;font-size:13px}
   .vbody{padding-top:22px}
-  .rows,.rows .r{gap:6px}.rows img{border-radius:8px}
+  .rows,.rows .r{gap:6px}.rows img{border-radius:5px}
 }
 /* instagram links (footer + end of each album) */
 .iglink{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s,border-color .2s}
@@ -160,20 +160,20 @@ button{color:inherit}
 .rows{padding-bottom:50px}
 /* admin: editing tools on album pages (only after login) */
 .adminbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0}
-.adminbar input,.adminbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;min-width:0}
+.adminbar input,.adminbar select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font:inherit;background:#fff;min-width:0}
 .adminbar .btn{padding:9px 16px}
 .ed{position:relative;display:block;flex:none}
 .ed img{width:100%!important;height:100%!important}
 .ed .tools{position:absolute;left:8px;right:8px;bottom:8px;display:flex;gap:4px;justify-content:center;opacity:0;transition:opacity .2s}
 .ed:hover .tools{opacity:1}
 @media (hover:none){.ed .tools{opacity:1}}
-.ed .tools button{border:0;background:rgba(255,250,246,.92);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:14px}
+.ed .tools button{border:0;background:rgba(255,250,246,.92);border-radius:5px;width:34px;height:34px;cursor:pointer;font-size:14px}
 .ed .tools button:hover{background:var(--acc);color:#fff}
 .share{margin-top:14px;padding:9px 16px}
 #ig{background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff}
 @media (max-width:600px){#lb .p,#lb .n{display:none}#lb img{max-width:96vw}}
 #lbCap{color:#fff}#lbCap:empty{display:none}
-.sheet textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;resize:vertical}
+.sheet textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;resize:vertical}
 .sheet details{margin-top:28px;border-top:1px solid var(--line);padding-top:18px}
 .sheet summary{cursor:pointer;font-weight:600}
 /* admin: upload panel (only visible after login) */
@@ -184,16 +184,16 @@ button{color:inherit}
 .sheet h3{font:400 32px/1.1 "DM Serif Display",Georgia,serif;margin:0 0 6px}
 .sheet p.hint{color:var(--muted);margin:0 0 20px;font-size:14px}
 .sheet label{display:block;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
-.sheet input[type=password],.sheet input[type=text],.sheet select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
+.sheet input[type=password],.sheet input[type=text],.sheet select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit}
 .sheet .x{position:absolute;top:18px;right:18px;border:0;background:none;font-size:22px;cursor:pointer;color:var(--muted)}
-.drop{display:block;border:2px dashed var(--line);border-radius:16px;padding:28px;text-align:center;cursor:pointer;color:var(--muted);text-transform:none!important;letter-spacing:0!important;font-weight:400!important;font-size:15px!important}
+.drop{display:block;border:2px dashed var(--line);border-radius:10px;padding:28px;text-align:center;cursor:pointer;color:var(--muted);text-transform:none!important;letter-spacing:0!important;font-weight:400!important;font-size:15px!important}
 .drop.over{border-color:var(--acc);background:var(--soft)}
 .queue{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.queue div{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#e6dcd3}
+.queue div{position:relative;aspect-ratio:1;border-radius:7px;overflow:hidden;background:#e6dcd3}
 .queue img{width:100%;height:100%;object-fit:cover}
 .queue div.ok::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;background:rgba(176,83,46,.75);color:#fff;font-size:22px}
 .queue div.fail::after{content:"!";position:absolute;inset:0;display:grid;place-items:center;background:rgba(160,20,20,.75);color:#fff;font-size:22px}
-.prog{height:6px;border-radius:9px;background:var(--line);overflow:hidden;margin:18px 0 0}
+.prog{height:6px;border-radius:6px;background:var(--line);overflow:hidden;margin:18px 0 0}
 .prog i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
 .row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 .msg{font-size:14px;margin-top:14px;min-height:20px}
