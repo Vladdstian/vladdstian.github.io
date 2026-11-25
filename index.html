@@ -230,6 +230,9 @@ let CFG, DB, DATA = [], lbList = [], lbI = 0;
 const MANIFEST = '_data.json';
 const rawBase = () => `https://raw.githubusercontent.com/${CFG.user}/${CFG.repo}/${CFG.branch}`;
 const apiBase = () => `https://api.github.com/repos/${CFG.user}/${CFG.repo}`;
+// grids load a 900px thumbnail from thumbs/; if one is missing, the <img> falls back to the full photo
+const thumb = u => u.replace(`/${CFG.branch}/photos/`, `/${CFG.branch}/thumbs/`).replace(/\.(png|jpe?g|webp)$/i, '.jpg');
+const img = (url, attrs = '') => `<img loading="lazy" src="${esc(thumb(url))}" data-full="${esc(url)}" onerror="this.onerror=null;this.src=this.dataset.full" ${attrs}/>`;
 const normalize = d => { d = d && typeof d === 'object' ? d : {}; d.meta ||= { title: 'Portfolio' }; d.collections ||= []; d.contact ||= {}; d.collections.forEach(c => { if (!Array.isArray(c.photos)) c.photos = []; }); return d; };
 // photo ids start with Date.now() in base36 (+4 random chars), so they sort by upload time
 const idTime = id => parseInt(String(id).slice(0, -4), 36) || 0;
@@ -251,13 +254,13 @@ function render() {
   DATA = DB.collections.filter(c => c.photos.length);
   if (!DATA.length) return;
   const by = slug => DATA.find(c => c.slug === slug) || DATA[0];
-  $('bandImg').src = by('portraits').cover || by('portraits').photos[0].url;
+  $('bandImg').src = thumb(by('portraits').cover || by('portraits').photos[0].url);
   $('mail').href = 'mailto:' + (DB.contact.email || CFG.contactEmail || '');
 
   const SIZES = ['b','s','t','s','w','w','t','s','b','s','w','w']; // big / small / tall / wide: two blocks that fill 4 columns
   $('albumGrid').innerHTML = DATA.map((c, i) => `
     <a class="album ${SIZES[i % 12]}" data-slug="${esc(c.slug)}">
-      <div class="im"><img loading="lazy" src="${esc(c.cover || c.photos[0].url)}" alt="${esc(c.name)}"/></div>
+      <div class="im">${img(c.cover || c.photos[0].url, `alt="${esc(c.name)}"`)}</div>
       <div class="meta"><div><h3>${esc(c.name)}</h3><small>${c.photos.length} photo${c.photos.length !== 1 ? 's' : ''}</small></div><span class="round">→</span></div>
     </a>`).join('');
   document.querySelectorAll('.album').forEach(a => a.onclick = () => openAlbum(a.dataset.slug, true));
@@ -266,7 +269,7 @@ function render() {
   const covers = new Set(DATA.map(c => c.cover));
   const recent = DATA.flatMap(c => c.photos.map(p => ({ ...p, album: c.slug })))
     .filter(p => !covers.has(p.url)).sort((a, b) => idTime(b.id) - idTime(a.id)).slice(0, 4);
-  $('recent').innerHTML = recent.map((p, i) => `<img loading="lazy" src="${esc(p.url)}" data-i="${i}" alt="${esc(p.caption || '')}"/>`).join('');
+  $('recent').innerHTML = recent.map((p, i) => img(p.url, `data-i="${i}" alt="${esc(p.caption || '')}"`)).join('');
   $('recent').onclick = e => { if (e.target.dataset.i) openLb(recent, +e.target.dataset.i); };
 }
 
@@ -274,7 +277,7 @@ function openAlbum(slug, push) {
   const c = DATA.find(x => x.slug === slug); if (!c) return;
   $('vTitle').textContent = c.name;
   $('vSub').textContent = c.photos.length + ' photos' + (c.description ? ' — ' + c.description : '');
-  $('vGrid').innerHTML = c.photos.map((p, i) => `<img loading="lazy" src="${esc(p.url)}" data-i="${i}" ${p.w ? `width="${p.w}" height="${p.h}"` : ''} style="height:auto" alt="${esc(p.caption || '')}"/>`).join('');
+  $('vGrid').innerHTML = c.photos.map((p, i) => img(p.url, `data-i="${i}" ${p.w ? `width="${p.w}" height="${p.h}"` : ''} style="height:auto" alt="${esc(p.caption || '')}"`)).join('');
   $('vGrid').onclick = e => { if (e.target.dataset.i) openLb(c.photos, +e.target.dataset.i); };
   $('view').classList.add('open'); $('view').scrollTop = 0; document.body.style.overflow = 'hidden';
   if (push) history.pushState({}, '', '?c=' + encodeURIComponent(slug));
@@ -326,8 +329,7 @@ async function upsert(path, b64, msg) {
 async function freshDB() { const f = await ghAPI(MANIFEST); return normalize(JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g, '')))))); }
 const saveDB = () => upsert(MANIFEST, b64json(DB), 'Update portfolio manifest');
 
-function resizeImage(file) {
-  const maxPx = 2048, quality = 0.88;
+function resizeImage(file, maxPx = 2048, quality = 0.88) {
   return new Promise((ok, er) => {
     const img = new Image(), url = URL.createObjectURL(file);
     img.onload = () => {
@@ -403,6 +405,8 @@ $('doUp').onclick = async () => {
           const { b64, w, h } = await resizeImage(q.file);
           const pid = uid(), path = `photos/${col.slug}/${pid}.jpg`;
           await upsert(path, b64, `Add photo to ${col.name}`);
+          try { const t = await resizeImage(q.file, 900, 0.62); await upsert(`thumbs/${col.slug}/${pid}.jpg`, t.b64, `Add thumbnail for ${col.name}`); }
+          catch { /* thumbnail is optional: the page falls back to the full photo */ }
           col.photos.push({ id: pid, path, url: `${rawBase()}/${path}`, caption: '', w, h });
           if (!col.cover) col.cover = col.photos[0].url;
           q.state = 'ok'; done++;
