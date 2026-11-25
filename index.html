@@ -94,7 +94,7 @@ footer .copy{color:var(--muted);font-size:12px}
 #view .top{position:sticky;top:0;background:rgba(247,241,235,.97);backdrop-filter:blur(10px);z-index:2}
 #view .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
 
-.rows{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;padding-bottom:80px}
+.rows{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
 .rows .r{display:flex;gap:12px;justify-content:center}
 .rows img{display:block;flex:none;border-radius:12px;object-fit:cover;cursor:zoom-in;background:#e6dcd3}
 
@@ -152,6 +152,11 @@ button{color:inherit}
   .vbody{padding-top:22px}
   .rows,.rows .r{gap:6px}.rows img{border-radius:8px}
 }
+/* instagram links (footer + end of each album) */
+.iglink{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s,border-color .2s}
+.iglink:hover{color:var(--acc);border-color:var(--acc)}
+.igcta{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0 90px;color:var(--muted);font-size:14px}
+.rows{padding-bottom:50px}
 /* admin: editing tools on album pages (only after login) */
 .adminbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 0}
 .adminbar input,.adminbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;min-width:0}
@@ -244,6 +249,7 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
   <footer>
     <a class="logo serif" href="#top" style="font-size:22px"><svg class="mono" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.1" stroke-dasharray="98 15" transform="rotate(28 20 20)"/><path d="M9.5 30L21 9.5V30M21 9.5C33 9.5 33 30 21 30" stroke="currentColor" stroke-width="1.7"/><path d="M13.6 23H21" stroke="#b0532e" stroke-width="1.7"/></svg>Anca Dumitru</a>
     <div class="links"><a href="#top">Home</a><a href="#albums">Albums</a><a href="#contact">Contact</a></div>
+    <a class="iglink" id="igFoot" href="https://www.instagram.com/anca.duuh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>@anca.duuh</span></a>
     <div class="copy">© 2026 Anca Dumitru · <button class="admin" id="adminLink">Admin</button></div>
   </footer>
 </div>
@@ -251,7 +257,8 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
 <div id="view">
   <div class="top"><div class="wrap"><button class="btn ghost" id="back">← All albums</button><a class="logo serif" style="font-size:22px"><svg class="mono" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.1" stroke-dasharray="98 15" transform="rotate(28 20 20)"/><path d="M9.5 30L21 9.5V30M21 9.5C33 9.5 33 30 21 30" stroke="currentColor" stroke-width="1.7"/><path d="M13.6 23H21" stroke="#b0532e" stroke-width="1.7"/></svg>Anca Dumitru</a></div></div>
   <div class="vcover"><img id="vCover" alt=""/><div class="cap"><div><div class="eyebrow">Album</div><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div></div><button class="btn share" id="vShare">Share album ↗</button></div></div>
-  <div class="wrap vbody"><div class="adminbar" id="vAdmin"></div><div class="rows" id="vGrid"></div></div>
+  <div class="wrap vbody"><div class="adminbar" id="vAdmin"></div><div class="rows" id="vGrid"></div>
+    <div class="igcta"><span>More of my work on Instagram</span><a class="iglink" id="igAlbum" href="https://www.instagram.com/anca.duuh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>@anca.duuh</span></a></div></div>
 </div>
 
 <div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="foot"><span id="lbCap"></span><span id="lbCnt"></span><span id="lbFrom" hidden>·&nbsp;&nbsp;<a id="lbAll" href="#"></a></span></div></div>
@@ -334,7 +341,8 @@ function render() {
   $('bandImg').src = thumb(by('portraits').cover || by('portraits').photos[0].url);
   $('mail').href = 'mailto:' + (DB.contact.email || CFG.contactEmail || '');
   const ig = (DB.contact.instagram || '').replace(/^@|https?:\/\/(www\.)?instagram\.com\//g, '').replace(/\/$/, '');
-  $('ig').hidden = !ig; if (ig) $('ig').href = 'https://instagram.com/' + encodeURIComponent(ig);
+  $('ig').hidden = !ig; if (ig) { const u = 'https://www.instagram.com/' + encodeURIComponent(ig); $('ig').href = u; for (const id of ['igFoot', 'igAlbum']) { $(id).href = u; $(id).lastChild.textContent = '@' + ig; } }
+  for (const id of ['igFoot', 'igAlbum']) $(id).hidden = !ig;
   $('about').hidden = !DB.contact.about; $('aboutTxt').textContent = DB.contact.about || '';
   if (DB.contact.about) $('aboutImg').src = thumb(by('portugal-vibes').cover || DATA[0].cover);
 
