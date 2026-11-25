@@ -349,25 +349,27 @@ function decorate() {
   const box = $('vDeco'); box.innerHTML = '';
   const set = CUR && MOTIFS[CUR.slug]; if (!set) return;
   const V = $('view'), grid = $('vGrid').getBoundingClientRect(), vr = V.getBoundingClientRect(), st = V.scrollTop;
-  const H = $('vGrid').offsetTop + $('vGrid').offsetHeight + 40; box.style.height = H + 'px';
+  const H = Math.max($('vGrid').offsetTop + $('vGrid').offsetHeight + 40, V.clientHeight); box.style.height = H + 'px';
   const left = grid.left - vr.left, right = vr.width - (grid.right - vr.left), gridTop = grid.top - vr.top + st;
-  const svg = (body, x, y, size, rot = 0, vb = '-60 -60 120 120') => box.insertAdjacentHTML('beforeend',
-    `<svg viewBox="${vb}" width="${size}" height="${size}" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)" fill="none" stroke="#b0532e" stroke-width="${(2.2 * 110 / size).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`);
+  // every drawing gets the same on-screen line thickness (1.8px), whatever its size or drawing box
+  const svg = (body, x, y, w, h, rot = 0, vb = [-60, -60, 120, 120]) => box.insertAdjacentHTML('beforeend',
+    `<svg viewBox="${vb.join(' ')}" width="${w}" height="${h}" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)" fill="none" stroke="#b0532e" stroke-width="${(1.8 * vb[2] / w).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`);
   let k = 0; const rnd = i => ((Math.sin(i * 99.13) * 43758.5453) % 1 + 1) % 1; // stable pseudo-random per slot
-  // side columns, key drawings first and large
-  [[0, left, SIDE_L[CUR.slug]], [vr.width - right, right, ART[CUR.slug]]].forEach(([x0, w, hero], side) => {
+  // side columns: key drawing large at the top, then themed drawings spread evenly down to the bottom of the page
+  [[0, left, SIDE_L[CUR.slug], [-55, -55, 110, 110]], [vr.width - right, right, ART[CUR.slug], [-10, -10, 320, 420]]].forEach(([x0, w, hero, hvb]) => {
     if (w < 120) return;
     let y = 90;
-    if (hero) { const sz = Math.min(w - 40, 240); svg(hero, x0 + (w - sz) / 2, y, sz, 0, side ? '-10 -10 320 420' : '-55 -55 110 110'); y += sz * (side ? 1.35 : 1) + 50; }
-    for (; y + 110 < H; y += 150 + rnd(k) * 60) {
-      const sz = Math.min(w - 40, 80 + rnd(k + 7) * 30), m = set[1 + (k++ % (set.length - 1))];
-      svg(m, x0 + 20 + rnd(k + 3) * (w - 40 - sz), y, sz, (rnd(k + 11) - .5) * 30);
+    if (hero) { const hw = Math.min(w - 40, 220), hh = hw * hvb[3] / hvb[2]; svg(hero, x0 + (w - hw) / 2, y, hw, hh, 0, hvb); y += hh + 50; }
+    const n = Math.max(0, Math.floor((H - 40 - y) / 170)), step = n ? (H - 40 - y) / n : 0;
+    for (let i = 0; i < n; i++, k++) {
+      const sz = Math.min(w - 40, 80 + rnd(k + 7) * 30), m = set[1 + (k % (set.length - 1))];
+      svg(m, x0 + 20 + rnd(k + 3) * (w - 40 - sz), y + i * step + rnd(k + 5) * (step - sz), sz, sz, (rnd(k + 11) - .5) * 30);
     }
   });
   // strip right of the title, above the photos
   const t = $('vTitle').getBoundingClientRect(), sx = t.right - vr.left + 60, ex = grid.right - vr.left, top = 70, bottom = gridTop - 20;
   const sz = Math.min(90, bottom - top);
-  if (sz >= 50) for (let x = ex - sz; x > sx; x -= sz + 40 + rnd(k) * 30) svg(set[k++ % set.length], x, top + rnd(k + 5) * (bottom - top - sz), sz, (rnd(k + 9) - .5) * 24);
+  if (sz >= 50) for (let x = ex - sz; x > sx; x -= sz + 40 + rnd(k) * 30) svg(set[k++ % set.length], x, top + rnd(k + 5) * (bottom - top - sz), sz, sz, (rnd(k + 9) - .5) * 24);
 }
 
 function openAlbum(slug, push) {
