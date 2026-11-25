@@ -55,11 +55,12 @@ section.block{padding:90px 0 0}
 .head h2{font-size:48px;margin:10px 0 0;line-height:1.05}
 .head.row{display:flex;justify-content:space-between;align-items:end;text-align:left}
 .more{font-weight:500;font-size:14px;display:flex;gap:8px;align-items:center}
-.albums{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.album{background:var(--card);border-radius:24px;padding:10px 10px 16px;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 14px 34px -28px rgba(60,30,10,.5)}
+.albums{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:340px;grid-auto-flow:dense;gap:22px}
+.album.b{grid-column:span 2;grid-row:span 2}.album.t{grid-row:span 2}.album.w{grid-column:span 2}
+.album{display:flex;flex-direction:column;min-height:0;background:var(--card);border-radius:24px;padding:10px 10px 16px;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 14px 34px -28px rgba(60,30,10,.5)}
 .album:hover{transform:translateY(-6px);box-shadow:0 26px 44px -26px rgba(60,30,10,.55)}
 .album:hover .round{background:var(--acc);color:#fff;border-color:var(--acc)}
-.album .im{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#e6dcd3}
+.album .im{flex:1;min-height:0;border-radius:18px;overflow:hidden;background:#e6dcd3}
 .album .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .album:hover .im img{transform:scale(1.05)}
 .album .meta{display:flex;align-items:end;justify-content:space-between;gap:10px;padding:14px 8px 0}
@@ -93,12 +94,14 @@ footer .copy{color:var(--muted);font-size:12px}
 /* lightbox */
 #lb{position:fixed;inset:0;background:rgba(22,18,16,.96);z-index:60;display:none;align-items:center;justify-content:center}
 #lb.open{display:flex}
-#lb img{max-width:90vw;max-height:88vh;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lb img{max-width:90vw;max-height:80vh;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 #lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:0;width:52px;height:52px;border-radius:50%;font-size:22px;cursor:pointer}
 #lb button:hover{background:var(--acc)}
 #lb .x{top:22px;right:22px}
 #lb .p{left:22px;top:50%;transform:translateY(-50%)}
 #lb .n{right:22px;top:50%;transform:translateY(-50%)}
+#lb .all{position:absolute;top:22px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:8px;background:var(--acc);color:#fff;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500}
+#lb .all:hover{background:#c4633b}
 #lb .cnt{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#bbb;font-size:13px;letter-spacing:.1em}
 
 @media (max-width:960px){
@@ -106,6 +109,7 @@ footer .copy{color:var(--muted);font-size:12px}
   .about{grid-template-columns:1fr;text-align:left}
   .feats{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}
   .albums,.recent{grid-template-columns:repeat(2,1fr);gap:14px}
+  .albums{grid-auto-rows:240px}
   .band{grid-template-columns:1fr}
   .band .tx{padding:32px}
   .band img{-webkit-mask-image:linear-gradient(transparent,#000 50%);mask-image:linear-gradient(transparent,#000 50%)}
@@ -182,7 +186,7 @@ footer .copy{color:var(--muted);font-size:12px}
   <div class="wrap"><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div><div class="masonry" id="vGrid"></div></div>
 </div>
 
-<div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="cnt" id="lbCnt"></div></div>
+<div id="lb"><img id="lbImg" alt=""/><button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">‹</button><button class="n" aria-label="Next">›</button><div class="cnt" id="lbCnt"></div><a class="all" id="lbAll" href="#">See the whole album →</a></div>
 
 <div class="switch"><a href="styles.html#a">A · Gallery</a><a href="styles.html#b">B · Minimal</a><a href="styles.html#c">C · Dark</a><a class="on" href="mockup.html">D · Warm</a></div>
 <script>
@@ -190,7 +194,7 @@ footer .copy{color:var(--muted);font-size:12px}
 const RAW = 'https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/';
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let DATA, lbList = [], lbI = 0;
+let DATA, lbList = [], lbI = 0, lbAlbum = null;
 
 Promise.all([fetch(RAW + '_data.json').then(r => r.json()), fetch(RAW + 'settings.json').then(r => r.json())]).then(([d, s]) => {
   DATA = d.collections.filter(c => c.photos.length);
@@ -199,8 +203,9 @@ Promise.all([fetch(RAW + '_data.json').then(r => r.json()), fetch(RAW + 'setting
   $('bandImg').src = by('portraits').cover;
   $('mail').href = 'mailto:' + (s.contactEmail || '');
 
-  $('albumGrid').innerHTML = DATA.map(c => `
-    <a class="album" data-slug="${esc(c.slug)}">
+  const SIZES = ['b','s','t','s','w','w','t','s','b','s','w','w']; // big / small / tall / wide
+  $('albumGrid').innerHTML = DATA.map((c, i) => `
+    <a class="album ${SIZES[i % 12]}" data-slug="${esc(c.slug)}">
       <div class="im"><img loading="lazy" src="${esc(c.cover || c.photos[0].url)}" alt="${esc(c.name)}"/></div>
       <div class="meta"><div><h3>${esc(c.name)}</h3><small>${c.photos.length} photos</small></div><span class="round">→</span></div>
     </a>`).join('');
@@ -209,7 +214,7 @@ Promise.all([fetch(RAW + '_data.json').then(r => r.json()), fetch(RAW + 'setting
   const latest = DATA[0];
   const recent = latest.photos.filter(p => p.url !== latest.cover).slice(0, 4); // skip the cover, it's already on the album card
   $('recent').innerHTML = recent.map((p, i) => `<img loading="lazy" src="${esc(p.url)}" data-i="${i}" alt=""/>`).join('');
-  $('recent').onclick = e => { if (e.target.dataset.i) openLb(recent, +e.target.dataset.i); };
+  $('recent').onclick = e => { if (e.target.dataset.i) openLb(recent, +e.target.dataset.i, latest.slug); };
 
   const q = new URLSearchParams(location.search).get('c'); // keeps old ?c=slug share links working
   if (q) openAlbum(q, false);
@@ -231,7 +236,8 @@ function closeAlbum(push) {
 $('back').onclick = () => closeAlbum(true);
 window.onpopstate = () => { const q = new URLSearchParams(location.search).get('c'); q ? openAlbum(q, false) : closeAlbum(false); };
 
-function openLb(list, i) { lbList = list; lbI = i; showLb(); $('lb').classList.add('open'); }
+function openLb(list, i, slug) { lbList = list; lbI = i; lbAlbum = slug || null; $('lbAll').style.display = slug ? 'inline-flex' : 'none'; showLb(); $('lb').classList.add('open'); }
+$('lbAll').onclick = e => { e.preventDefault(); $('lb').classList.remove('open'); openAlbum(lbAlbum, true); };
 function showLb() { $('lbImg').src = lbList[lbI].url; $('lbCnt').textContent = (lbI + 1) + ' / ' + lbList.length; }
 const step = d => { lbI = (lbI + d + lbList.length) % lbList.length; showLb(); };
 $('lb').querySelector('.x').onclick = () => $('lb').classList.remove('open');
