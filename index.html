@@ -74,8 +74,9 @@ section.block{padding:90px 0 0}
 .recent img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;cursor:zoom-in;background:#e6dcd3}
 
 /* cta */
-.band{margin:100px 0 0;background:#221d1a;color:#fff;border-radius:30px;overflow:hidden;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;grid-template-rows:440px;height:440px;position:relative}
-.band img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(1) contrast(1.05);opacity:.85;-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%);mask-image:linear-gradient(90deg,transparent,#000 55%)}
+.band{margin:100px 0 0;background:#221d1a;color:#fff;border-radius:30px;overflow:hidden;display:grid;grid-template-columns:1fr;align-items:center;grid-template-rows:520px;height:520px;position:relative}
+.band img{position:absolute;right:0;top:0;width:62%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1) contrast(1.05);opacity:.85;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.band .tx{position:relative;z-index:1}
 .band .tx{padding:40px 56px}
 .band h2{font-size:44px;margin:12px 0 8px;line-height:1.05}
 .band p{color:#c9bfb7;margin:0 0 24px}
@@ -92,10 +93,11 @@ footer .copy{color:var(--muted);font-size:12px}
 #view .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
 #view h1{font-size:clamp(40px,5vw,68px);margin:30px 0 4px;line-height:1}
 #view .sub{color:var(--muted);margin-bottom:36px}
-.vhead{position:relative;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+.vhead{position:relative;z-index:1;padding-top:40px}
 .vhead > :not(.art){position:relative;z-index:1}
-.vhead .art{position:absolute;right:32px;top:0;width:min(330px,55%);height:400px;pointer-events:none;opacity:.55;-webkit-mask-image:linear-gradient(#000 50%,transparent 92%);mask-image:linear-gradient(#000 50%,transparent 92%)}
-.vhead .art svg{width:100%;height:100%}
+/* the album's drawing fills the whole page behind everything, fixed while scrolling */
+#view .art{position:fixed;inset:70px 0 0;z-index:0;pointer-events:none;opacity:.22;display:flex;justify-content:center}
+#view .art svg{height:100%;max-width:96vw}
 .rows{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;padding-bottom:80px}
 .rows .r{display:flex;gap:12px;justify-content:center}
 .rows img{display:block;flex:none;border-radius:12px;object-fit:cover;cursor:zoom-in;background:#e6dcd3}
@@ -120,11 +122,11 @@ footer .copy{color:var(--muted);font-size:12px}
   .albums,.recent{grid-template-columns:repeat(2,1fr);gap:14px}
   .albums{grid-auto-rows:240px}
   .band{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
-  .band img{height:300px}
+  .band img{position:static;width:100%;height:300px}
   .band .tx{padding:32px}
   .band img{-webkit-mask-image:linear-gradient(transparent,#000 50%);mask-image:linear-gradient(transparent,#000 50%)}
   .head h2,.band h2{font-size:36px}
-  .vhead{min-height:220px}.vhead .art{height:260px;right:18px}
+
 }
 @media (max-width:520px){.wrap{padding:0 18px}.album h3{font-size:13px}.round{display:none}}
 /* highlights: one random photo per album, sideways scroll */
@@ -168,7 +170,6 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
     <div class="links">
       <a class="on" href="#top">Home</a><a href="#albums">Albums</a><a href="#contact">Contact</a>
     </div>
-    <a class="btn dark" href="#contact" style="padding:10px 20px">Say hello ✈</a>
   </nav>
 </div>
 
@@ -207,7 +208,8 @@ footer .admin{font-size:12px;color:var(--muted);cursor:pointer;background:none;b
 
 <div id="view">
   <div class="top"><div class="wrap"><button class="btn ghost" id="back">← All albums</button><a class="logo serif" style="font-size:22px"><svg class="mono" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.1" stroke-dasharray="98 15" transform="rotate(28 20 20)"/><path d="M9.5 30L21 9.5V30M21 9.5C33 9.5 33 30 21 30" stroke="currentColor" stroke-width="1.7"/><path d="M13.6 23H21" stroke="#b0532e" stroke-width="1.7"/></svg>Anca Dumitru</a></div></div>
-  <div class="wrap vhead"><div class="art" id="vArt"></div><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div></div>
+  <div class="art" id="vArt"></div>
+  <div class="wrap vhead"><h1 class="serif" id="vTitle"></h1><div class="sub" id="vSub"></div></div>
   <div class="wrap"><div class="rows" id="vGrid"></div></div>
 </div>
 
@@ -337,7 +339,7 @@ function openAlbum(slug, push) {
   const c = DATA.find(x => x.slug === slug); if (!c) return;
   $('vTitle').textContent = c.name;
   $('vSub').textContent = c.photos.length + ' photos' + (c.description ? ' — ' + c.description : '');
-  $('vArt').innerHTML = ART[c.slug] ? `<svg viewBox="0 0 300 400" fill="none" stroke="#b0532e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${ART[c.slug]}</svg>` : '';
+  $('vArt').innerHTML = ART[c.slug] ? `<svg viewBox="0 0 300 400" fill="none" stroke="#b0532e" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round">${ART[c.slug]}</svg>` : '';
   CUR = c;
   $('vGrid').onclick = e => { if (e.target.dataset.i) openLb(c.photos, +e.target.dataset.i); };
   $('view').classList.add('open'); $('view').scrollTop = 0; document.body.style.overflow = 'hidden';
