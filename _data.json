@@ -4,6 +4,71 @@
   },
   "collections": [
     {
+      "id": "mwwjvh0jdik9",
+      "name": "Hungary",
+      "slug": "hungary",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvh1uuld7.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mwwjvh1uuld7",
+          "path": "photos/hungary/mwwjvh1uuld7.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvh1uuld7.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mwwjvl9sur6j",
+          "path": "photos/hungary/mwwjvl9sur6j.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvl9sur6j.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mwwjvoyvf3yw",
+          "path": "photos/hungary/mwwjvoyvf3yw.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvoyvf3yw.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mwwjvstn3blo",
+          "path": "photos/hungary/mwwjvstn3blo.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvstn3blo.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        },
+        {
+          "id": "mwwjvwldu6b8",
+          "path": "photos/hungary/mwwjvwldu6b8.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjvwldu6b8.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mwwjw0vxqu5h",
+          "path": "photos/hungary/mwwjw0vxqu5h.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjw0vxqu5h.jpg",
+          "caption": "",
+          "w": 1536,
+          "h": 2048
+        },
+        {
+          "id": "mwwjw4uc7lph",
+          "path": "photos/hungary/mwwjw4uc7lph.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/hungary/mwwjw4uc7lph.jpg",
+          "caption": "",
+          "w": 1365,
+          "h": 2048
+        }
+      ]
+    },
+    {
       "id": "mvl8l5z23tam",
       "name": "Autumn",
       "slug": "autumn",
