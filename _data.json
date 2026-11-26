@@ -4,6 +4,31 @@
   },
   "collections": [
     {
+      "id": "mwxe8tenjw84",
+      "name": "Animals",
+      "slug": "animals",
+      "cover": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/animals/mwxe8tfwpdrc.jpg",
+      "description": "",
+      "photos": [
+        {
+          "id": "mwxe8tfwpdrc",
+          "path": "photos/animals/mwxe8tfwpdrc.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/animals/mwxe8tfwpdrc.jpg",
+          "caption": "",
+          "w": 1423,
+          "h": 948
+        },
+        {
+          "id": "mwxe91uwstu7",
+          "path": "photos/animals/mwxe91uwstu7.jpg",
+          "url": "https://raw.githubusercontent.com/Vladdstian/vladdstian.github.io/main/photos/animals/mwxe91uwstu7.jpg",
+          "caption": "",
+          "w": 1066,
+          "h": 1600
+        }
+      ]
+    },
+    {
       "id": "mwwjvh0jdik9",
       "name": "Hungary",
       "slug": "hungary",
